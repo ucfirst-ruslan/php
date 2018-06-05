@@ -1,20 +1,23 @@
 <?php
+ini_set('display_errors', 1);
 
 include_once 'config.php';
-
 include_once 'function.php';
 
-
-var_dump($_FILES);
-chmod('upload', 0777);
-
-if (isset($_FILES)){
-   echo "read"; 
-       
-       $nameFile = upload();
-    
+if(!empty($_POST['delete'])) {
+    deleteFile ($_POST['delete']);
 }
+
+if (!empty($_FILES)){
+
+    if (chmodCheckDir(UPLOAD_DIR)) {
+        $fileName = upload();
+    }
+}
+
 $title = 'File Uploads';
+
 $arrDateDir = readDirr();
+
 include_once 'template/index.php';
 

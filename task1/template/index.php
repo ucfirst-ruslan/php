@@ -10,23 +10,27 @@
 
 <form enctype="multipart/form-data" method="post"> 
     <input type="hidden" name="MAX_FILE_SIZE" value="2000000"> 
-    Send this file: <input name="file" type="file"> 
-    <input type="submit" value="Send File"> 
+    <input name="file" type="file">
+    <input type="submit" value="Загрузить">
 </form>
 <br><br>
-<table style="width:100%">
+<table style="width:960px; text-align: left; border:1px solid black">
   <tr>
     <th>#</th>
-    <th>File Name</th> 
+    <th>File Name</th>
     <th>Size</th>
+    <th>Delete</th>
   </tr>
+<form method="post">
+  <?php $i = 1; foreach ($arrDateDir as $key => $dateDir):?>
   <tr>
-<?php $i = 1; foreach ($arrDateDir as $key => $dateDir):?> 
     <td><?= $i ?></td>
-    <td><?= $key ?></td> 
+    <td><?= $key ?></td>
     <td><?= $dateDir ?></td>
-<?php endforeach; ?>
+    <td><button value="<?= $key ?>" name="delete" type="submit">Удалить</button></td>
   </tr>
+<?php $i++; endforeach; ?>
+</form>
 </table>
 
 </body>
