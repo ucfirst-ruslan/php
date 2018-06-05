@@ -19,6 +19,7 @@ function upload()
     header("Location: ".$_SERVER['HTTP_REFERER'], true, 301);
 }
 
+
 function checkFileName ($filename)
 {
     $dirFile = UPLOAD_DIR."/".$filename;
@@ -45,9 +46,9 @@ function checkFileName ($filename)
     if (file_exists(UPLOAD_DIR."/".$filename)) {
         $filename = checkFileName ($filename);
     }
+
     return $filename;
 }
-
 
 
 function chmodCheckDir($item)
@@ -64,7 +65,6 @@ function chmodCheckDir($item)
     }
 
     return $resp;
-    
 }
 
 
@@ -87,6 +87,7 @@ function deleteFile ($file)
 
     header("Location: ".$_SERVER['HTTP_REFERER'], true, 301);
 }
+
 
 function readDirr() 
 {
@@ -133,9 +134,6 @@ function getSize ($file)
     
     return $returnSize;
 }
-
-
-
 
 
 function addError ($errorName, $error)
