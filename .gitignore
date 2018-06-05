@@ -53,3 +53,9 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+.idea/composerJson.xml
+.idea/inspectionProfiles/
+.idea/modules.xml
+.idea/php.iml
+.idea/php.xml
+.idea/vcs.xml
