@@ -197,6 +197,5 @@ function getSize ($file)
         default:
             $returnSize = round($size, 2) . " bytes";
     }
-
     return $returnSize;
 }
