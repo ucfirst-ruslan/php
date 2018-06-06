@@ -10,19 +10,24 @@ function upload()
     $error = '';
     $messForUser = array();
 
-    if ($_FILES['file']['size'] > FILE_SIZE) {
+    if ($_FILES['file']['size'] > FILE_SIZE)
+    {
             
         $error = 'Файл слишком большой для загрузки';
-    } else {
+    } else 
+    {
         $fileName = checkFileName ($_FILES['file']['name']);
         $newFileName = UPLOAD_DIR."/". $fileName;
 
-        if (!move_uploaded_file($_FILES['file']['tmp_name'], $newFileName)) {
+        if (!move_uploaded_file($_FILES['file']['tmp_name'], $newFileName)) 
+        {
 
             $error = 'Файл не загружен';
-        } else {
+        } else 
+        {
 
-            if (!setChmodFile($newFileName)) {
+            if (!setChmodFile($newFileName)) 
+            {
                 $error = 'Не удалось установить права 777 на файл';
             }
 
@@ -30,10 +35,10 @@ function upload()
         }
     }
 
-
     $messForUser['error'] = $error;
 
-    if (!empty($error)) {
+    if (!empty($error)) 
+    {
         addError('UPLOAD'.'_'.time(), $error);
     }
     return $messForUser;
@@ -50,29 +55,29 @@ function checkFileName ($filename)
 {
     $dirFile = UPLOAD_DIR."/".$filename;
 
-    if (file_exists($dirFile)) {
-
+    if (file_exists($dirFile)) 
+    {
         $file = explode(".", $filename);
         $fileTmp = explode("_", $file[0]);
         $countArray = count($fileTmp) -1;
 
         echo $fileTmp[$countArray];
 
-        if (is_numeric($fileTmp[$countArray])){
-
+        if (is_numeric($fileTmp[$countArray]))
+        {
             $fileTmp[$countArray]++;
             $file[0] = implode("_", $fileTmp);
 
-        } else {
-
+        } else 
+        {
             $file[0] = $file[0] ."_1";
         }
 
         $filename = implode(".", $file);
-
     }
 
-    if (file_exists(UPLOAD_DIR."/".$filename)) {
+    if (file_exists(UPLOAD_DIR."/".$filename)) 
+    {
         $filename = checkFileName ($filename);
     }
     return $filename;
@@ -100,17 +105,20 @@ function chmodCheckDir()
 {
     $dirChmod = substr(sprintf('%o', fileperms(UPLOAD_DIR)), -4);
 
-    if ($dirChmod != '0777') {
+    if ($dirChmod != '0777') 
+    {
         $error = 'У вас нет прав доступа к директории';
         addError ('CHMOD_CHECK'.'_'.time(), $error);
 
         $messForUser['error'] = $error;
         return $messForUser;
 
-    } else {
+    } else 
+    {
         return false;
     }
 }
+
 
 /**
  * Функция удаления файла.
@@ -123,26 +131,28 @@ function deleteFile ($file)
 {
     $fileDel = UPLOAD_DIR."/".$file;
 
-    if (!($messForUser = chmodCheckDir())) {
-        if (file_exists($fileDel)) {
-
-            if (!unlink($fileDel)) {
+    if (!($messForUser = chmodCheckDir())) 
+    {
+        if (file_exists($fileDel)) 
+        {
+            if (!unlink($fileDel)) 
+            {
                 $error = "$file: Файл не может быть удален";
             } else {
                 $messForUser['success'] = 'Файл '.$file.' удален!';
             }
 
-        } else {
+        } else 
+        {
             $error = "$file: Этого файла не существует";
         }
-
     }
 
-    if (empty($error)) {
-
+    if (empty($error)) 
+    {
         return $messForUser;
-
-    } else {
+    } else 
+    {
         addError ('DELETE_'.time(), $error);
         $messForUser['error'] = $error;
 
@@ -158,25 +168,24 @@ function readDirr()
 {
     $fileArray = array();
 
-    if ($handle = opendir(UPLOAD_DIR)) {
-    
-         while (false !== ($file = readdir($handle))) { 
-
-            if ($file != "." && $file != "..") { 
-                
+    if ($handle = opendir(UPLOAD_DIR)) 
+    {
+        while (false !== ($file = readdir($handle))) 
+        { 
+            if ($file != "." && $file != "..") 
+            { 
                 $fileSize = getSize($file);
                 $fileArray[$file] = $fileSize;
             }
         }
         closedir($handle);
     }
-    
     return $fileArray;
 }
 
 /**
  * Получение размера файла в человекопонятном формате
- * Для ГБ и т.д. не делал, потому, что этовыходит за рамки ограничений.
+ * Для ГБ и т.д. не делал, потому, что это выходит за рамки ограничений сервера.
  * @param $file
  * @return string
  */
@@ -186,7 +195,8 @@ function getSize ($file)
     
     $size = filesize($fileDir);
 
-    switch ($size) {
+    switch ($size) 
+    {
         case (1024 < $size && 1048576 > $size):
             $returnSize = round($size/1024, 2) . " kB";
             break;
@@ -204,7 +214,7 @@ function getSize ($file)
 
 /**
  * Функция записи ошибок в конфиг.
- * @param $errorName
+ * @param $errorName, $error
  * @param $error
  */
 function addError ($errorName, $error)

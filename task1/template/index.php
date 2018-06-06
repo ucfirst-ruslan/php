@@ -15,12 +15,12 @@
 </form>
 
 <br><br>
-<?php if (!empty($messForUser['error'])):?>
-  <h3><?=$messForUser['error']?></h3>
+<?php if (!empty($messForUser['error'])): ?>
+  <h3><?= $messForUser['error'] ?></h3>
 <?php endif; ?>
 
-<?php if (!empty($messForUser['success'])):?>
-    <h3><?=$messForUser['success']?></h3>
+<?php if (!empty($messForUser['success'])): ?>
+    <h3><?= $messForUser['success'] ?></h3>
 <?php endif; ?>
 
 <br><br>
@@ -32,14 +32,21 @@
     <th>Delete</th>
   </tr>
 <form method="post">
-<?php if (!empty($arrDateDir)): $i = 1; foreach ($arrDateDir as $key => $dateDir):?>
-  <tr>
+<?php if (!empty($arrDateDir)): 
+    $i = 1; 
+    foreach ($arrDateDir as $key => $dateDir): ?>
+  
+    <tr>
     <td><?= $i ?></td>
     <td><?= $key ?></td>
     <td><?= $dateDir ?></td>
     <td><button value="<?= $key ?>" name="delete" type="submit">Удалить</button></td>
-  </tr>
-<?php $i++; endforeach; endif;?>
+    </tr>
+
+<?php $i++; 
+    endforeach; 
+    endif; ?>
+
 </form>
 </table>
 

@@ -5,17 +5,21 @@ include_once 'config.php';
 include_once 'function.php';
 
 
-if(!empty($_POST['delete'])) {
+if(!empty($_POST['delete'])) 
+{
     $messForUser = deleteFile ($_POST['delete']);
 }
 
-if (chmodCheckDir()) {
+if (chmodCheckDir()) 
+{
     $messForUser = $chmodDir;
 }
 
-if (!empty($_FILES)){
+if (!empty($_FILES))
+{
 
-    if (empty($chmodDir)) {
+    if (empty($chmodDir)) 
+    {
         $messForUser = upload();
     }
 }
@@ -23,11 +27,10 @@ if (!empty($_FILES)){
 $title = 'File Uploads';
 
 
-if (empty($chmodDir)) {
+if (empty($chmodDir)) 
+{
     $arrDateDir = readDirr();
 }
-
-
 
 include_once 'template/index.php';
 
