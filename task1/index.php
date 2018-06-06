@@ -4,20 +4,30 @@ ini_set('display_errors', 1);
 include_once 'config.php';
 include_once 'function.php';
 
+
 if(!empty($_POST['delete'])) {
-    deleteFile ($_POST['delete']);
+    $messForUser = deleteFile ($_POST['delete']);
+}
+
+if (chmodCheckDir()) {
+    $messForUser = $chmodDir;
 }
 
 if (!empty($_FILES)){
 
-    if (chmodCheckDir(UPLOAD_DIR)) {
-        $fileName = upload();
+    if (empty($chmodDir)) {
+        $messForUser = upload();
     }
 }
 
 $title = 'File Uploads';
 
-$arrDateDir = readDirr();
+
+if (empty($chmodDir)) {
+    $arrDateDir = readDirr();
+}
+
+
 
 include_once 'template/index.php';
 
