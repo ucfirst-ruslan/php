@@ -1,68 +1,112 @@
 <?php
-# http://192.168.0.15/~user10/php/task2/
 
 class Calculator
 {
     private $a;
     private $b;
+    private $mem;
     private $error;
 
-private function summ()
-{
-    return $this->a + $this->b;
-}
+    public function setDate($a = 0, $b = 0, $mem = 0)
+    {
+        if (is_int($a) && is_int($b) && is_int($mem)) {
+            $this->a = $a;
+            $this->b = $b;
+            $this->mem = $mem;
 
-private function sub()
-{
-    return $this->a - $this->b;
-}
+        } else {
+            $this->error = 'Это не число';
+            $this->writeError('SET_NUM_');
+        }
+    }
 
-private function div()
-{
-    if ($this->a > 0)? return $this->a / $this->b : $this->error = 'Нельзя делить на ноль';
-}
-
-private function multi()
-{
-    return $this->a * $this->b;
-}
-
-private function square()
-{
-    return sqrt($this->a);
-}
-
-private function devOne()
-{
-    return 1/$this->a;
-}
-
-private function percent()
-{
-    return $this->a /100 * $this->b;
-}
+    public function getError()
+    {
+        if (!empty($this->error))
+            return $this->error;
+        else
+            return false;
+    }
 
 
+    public function summ()
+    {
+        return $this->a + $this->b;
+    }
+
+    public function sub()
+    {
+        return ($this->a - $this->b);
+    }
+
+    public function div()
+    {
+        if (0 < $this->a) {
+            return $this->a / $this->b;
+        } else {
+            $this->error = 'Нельзя делить на ноль';
+            $this->writeError('DIV_');
+            return $this->error;
+        }
+    }
+
+    public function multi()
+    {
+        return $this->a * $this->b;
+    }
+
+    public function square()
+    {
+        return sqrt($this->a);
+    }
+
+    public function divOne()
+    {
+        if (0 < $this->a) {
+            return 1 / $this->a;
+        } else {
+            $this->error = 'Операция невозможна';
+            $this->writeError('DIVONE_');
+            return $this->error;
+        }
+    }
+
+    public function percent()
+    {
+        return $this->a / 100 * $this->b;
+    }
+
+    public function memAdd($mem = 0)
+    {
+        return $this->mem += $mem;
+    }
+
+    public function memSub($mem = 0)
+    {
+        return $this->mem -= $mem;
+    }
+
+    public function memShow()
+    {
+        return $this->mem;
+    }
+
+    public function memClean()
+    {
+        return $this->mem = 0;
+    }
 
 
-public function getError()
-{
-    if (isset($this->error))? return $this->error : return false;
-}
 
-public function setDate($a, $b)
-{
-    if (is_int($a))? $this->a = $a : $this->error = 'Это не число'; 
 
-    if (is_int($b))? $this->b = $b : $this->error = 'Это не число';
-}
 
-private function writeError ($tranferError)
-{
-    $addError = "define('".$df;lsgk:wq."', '".$error."');\n";
-    file_put_contents("config.php", $addError, FILE_APPEND | LOCK_EX);   
-}
 
+    public function writeError($func)
+    { echo "error";
+        $addError = "define('".$func.time()."', '".$this->error."');\n";
+
+        file_put_contents("config.php", $addError, FILE_APPEND | LOCK_EX);
+    }
 
 
 }
