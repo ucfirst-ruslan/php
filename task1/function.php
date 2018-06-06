@@ -53,8 +53,6 @@ function checkFileName ($filename)
         $fileTmp = explode("_", $file[0]);
         $countArray = count($fileTmp) -1;
 
-        echo $fileTmp[$countArray];
-
         if (is_numeric($fileTmp[$countArray]))
         {
             $fileTmp[$countArray]++;

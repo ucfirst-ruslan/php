@@ -16,11 +16,11 @@
 
 <br><br>
 <?php if (!empty($messForUser['error'])): ?>
-  <h3><?= $messForUser['error'] ?></h3>
+  <h3 style="color: red"><?= $messForUser['error'] ?></h3>
 <?php endif; ?>
 
 <?php if (!empty($messForUser['success'])): ?>
-    <h3><?= $messForUser['success'] ?></h3>
+    <h3  style="color: blue"><?= $messForUser['success'] ?></h3>
 <?php endif; ?>
 
 <br><br>
@@ -35,7 +35,7 @@
 <?php if (!empty($arrDateDir)): 
     foreach ($arrDateDir as $key => $dateDir): ?>
     <tr>
-    <td><?= $i ?></td>
+    <td><?= $setIteration ?></td>
     <td><?= $key ?></td>
     <td><?= $dateDir ?></td>
     <td><button value="<?= $key ?>" name="delete" type="submit">Удалить</button></td>
