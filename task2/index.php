@@ -17,8 +17,8 @@ $datas = array(
     "$a / $b = " => $calc->div(),
     "1/$a = " => $calc->divOne(),
     "$b% of $b = " => $calc->percent(),
-    "Mem + $mem " => $calc->memAdd(4),
-    "Mem - $mem " => $calc->memSub(5),
+    "Mem+ " => $calc->memAdd(4),
+    "Mem- " => $calc->memSub(5),
     "Mem Show " => $calc->memShow(),
     "Mem Clean " => $calc->memClean(),
 );
