@@ -97,11 +97,7 @@ class Calculator
     }
 
 
-
-
-
-
-    public function writeError($func)
+    private function writeError($func)
     {
         $addError = "define('".$func.time()."', '".$this->error."');\n";
 
