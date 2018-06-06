@@ -12,8 +12,7 @@ function upload()
 
     if ($_FILES['file']['size'] > FILE_SIZE)
     {
-            
-        $error = 'Файл слишком большой для загрузки';
+        $error = UPLOAD_SIZE;
     } else 
     {
         $fileName = checkFileName ($_FILES['file']['name']);
@@ -21,26 +20,19 @@ function upload()
 
         if (!move_uploaded_file($_FILES['file']['tmp_name'], $newFileName)) 
         {
-
-            $error = 'Файл не загружен';
+            $error = UPLOAD_ERROR;
         } else 
         {
-
-            if (!setChmodFile($newFileName)) 
+            if (!setChmodFile($newFileName))
             {
-                $error = 'Не удалось установить права 777 на файл';
+                $error = UPLOAD_CHMOD;
             }
-
-            $messForUser['success'] = 'Файл с именем "' . $fileName . '" загружен!';
+            $messForUser['success'] = UPLOAD_SUCCES;
         }
     }
 
     $messForUser['error'] = $error;
 
-    if (!empty($error)) 
-    {
-        addError('UPLOAD'.'_'.time(), $error);
-    }
     return $messForUser;
 }
 
@@ -107,10 +99,8 @@ function chmodCheckDir()
 
     if ($dirChmod != '0777') 
     {
-        $error = 'У вас нет прав доступа к директории';
-        addError ('CHMOD_CHECK'.'_'.time(), $error);
+        $messForUser['error'] = CHMOD_DIR;
 
-        $messForUser['error'] = $error;
         return $messForUser;
 
     } else 
@@ -137,14 +127,14 @@ function deleteFile ($file)
         {
             if (!unlink($fileDel)) 
             {
-                $error = "$file: Файл не может быть удален";
+                $error = DELETE_FILE_ERROR;
             } else {
-                $messForUser['success'] = 'Файл '.$file.' удален!';
+                $messForUser['success'] = DELETE_SUCCES;
             }
 
         } else 
         {
-            $error = "$file: Этого файла не существует";
+            $error = DELETE_FILE_NOT;
         }
     }
 
@@ -153,7 +143,6 @@ function deleteFile ($file)
         return $messForUser;
     } else 
     {
-        addError ('DELETE_'.time(), $error);
         $messForUser['error'] = $error;
 
         return $messForUser;
@@ -211,17 +200,3 @@ function getSize ($file)
 
     return $returnSize;
 }
-
-/**
- * Функция записи ошибок в конфиг.
- * @param $errorName, $error
- * @param $error
- */
-function addError ($errorName, $error)
-{
-    $addError = "define('".$errorName."', '".$error."');\n";
-   
-    file_put_contents("config.php", $addError, FILE_APPEND | LOCK_EX);
-}
-
-

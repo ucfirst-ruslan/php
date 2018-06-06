@@ -24,13 +24,13 @@ if (!empty($_FILES))
     }
 }
 
-$title = 'File Uploads';
-
-
-if (empty($chmodDir)) 
+if (empty($chmodDir))
 {
     $arrDateDir = readDirr();
 }
+
+$title = 'File Uploads';
+$setIteration = 1;
 
 include_once 'template/index.php';
 
