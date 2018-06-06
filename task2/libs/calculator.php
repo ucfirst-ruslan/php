@@ -45,7 +45,7 @@ class Calculator
             return $this->a / $this->b;
         } else {
             $this->error = 'Нельзя делить на ноль';
-            $this->writeError('DIV_');
+            $this->writeError('DIVISION_');
             return $this->error;
         }
     }
@@ -66,7 +66,7 @@ class Calculator
             return 1 / $this->a;
         } else {
             $this->error = 'Операция невозможна';
-            $this->writeError('DIVONE_');
+            $this->writeError('DIVISION_ONE_');
             return $this->error;
         }
     }
@@ -102,10 +102,10 @@ class Calculator
 
 
     public function writeError($func)
-    { echo "error";
+    {
         $addError = "define('".$func.time()."', '".$this->error."');\n";
 
-        file_put_contents("config.php", $addError, FILE_APPEND | LOCK_EX);
+        file_put_contents("libs/config.php", $addError, FILE_APPEND | LOCK_EX);
     }
 
 

@@ -4,7 +4,7 @@ include_once 'libs/calculator.php';
 
 $calc = new Calculator();
 
-$a = 7;
+$a = 0;
 $b = 3;
 $mem = 0;
 
