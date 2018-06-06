@@ -25,7 +25,12 @@ class FileOperatins
     }
 
     /**
-     * @param array|bool $file
+     * Функция разбиения строки на массив.
+     * От операции типа $file[1][5] отказался из-за ее
+     * специфики работы с многобайтными кодировками
+     *
+     * @param
+     * return array
      */
     public function getString()
     {
