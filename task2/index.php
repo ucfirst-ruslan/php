@@ -22,6 +22,7 @@ $datas = array(
     "Mem Show " => $calc->memShow(),
     "Mem Clean " => $calc->memClean(),
 );
+
 $error = $calc->getError();
 
 $title = 'Калькулятор';

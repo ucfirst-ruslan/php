@@ -101,16 +101,13 @@ function chmodCheckDir()
 
         return $messForUser;
 
-    } else 
-    {
-        return false;
     }
+    return false;
 }
 
 
 /**
  * Функция удаления файла.
- * Права на директорию не проверяю. В данном случае посчитал это лишним.
  *
  * @param $file
  * @return string
@@ -155,20 +152,19 @@ function readDirr()
 {
     $fileArray = array();
 
-    if ($handle = opendir(UPLOAD_DIR)) 
-    {
-        while (false !== ($file = readdir($handle))) 
-        { 
-            if ($file != "." && $file != "..") 
-            { 
-                $fileSize = getSize($file);
+    if ($handle = opendir(UPLOAD_DIR)) {
+        while (false !== ($file = readdir($handle))) {
+            if ($file != "." && $file != "..") {
+                if ($fileSize = getSize($file)) ;
                 $fileArray[$file] = $fileSize;
             }
         }
         closedir($handle);
     }
+
     return $fileArray;
 }
+
 
 /**
  * Получение размера файла в человекопонятном формате
@@ -179,21 +175,22 @@ function readDirr()
 function getSize ($file)
 {
     $fileDir = UPLOAD_DIR."/".$file;
-    
     $size = filesize($fileDir);
 
-    switch ($size) 
+    switch ($size)
     {
+        case (1024 > $size):
+            $returnSize = round($size, 2)." bytes";
+            break;
+
         case (1024 < $size && 1048576 > $size):
-            $returnSize = round($size/1024, 2) . " kB";
+            $returnSize = round($size/1024, 2)." kB";
             break;
 
         case (1048576 < $size):
-            $returnSize = round($size/1048576, 2) . " MB";
+            $returnSize = round($size/1048576, 2)." MB";
             break;
-
-        default:
-            $returnSize = round($size, 2) . " bytes";
     }
     return $returnSize;
+
 }

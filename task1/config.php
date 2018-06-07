@@ -1,6 +1,6 @@
 <?php 
 define('UPLOAD_DIR', 'upload');
-define('FILE_SIZE', '400000');
+define('FILE_SIZE', '4400000');
 
 define('UPLOAD_SIZE', 'Файл слишком большой для загрузки');
 define('UPLOAD_ERROR', 'Файл не загружен');
