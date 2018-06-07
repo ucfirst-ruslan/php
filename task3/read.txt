@@ -1,13 +1,7 @@
-Test
-При использовании SSL, Microsoft IIS нарушает протокол,
-закрывая соединение без отправки индикатора close_notify.
-PHP сообщит об этом как "SSL: Fatal Protocol Error" в тот момент,
-когда вы достигнете конца данных.
-Чтобы обойти это, вы должны установить error_reporting на уровень,
-исключающий E_WARNING.
-PHP умеет определять, что на стороне сервера находится проблемный
-IIS при открытии потока с помощью обертки https://
-и не выводит предупреждение.
-Если вы используете fsockopen() для создания
-ssl:// сокета, вы сами отвечаете за определение
-и подавление этого предупреждения.
+Determine whether a variable is considered to be empty.
+A variable is considered empty if it does not exist or
+if its value equals FALSE. empty() does not generate
+a warning if the variable does not exist.
+No warning is generated if the variable does not exist.
+That means empty() is essentially the concise
+equivalent to !isset($var) || $var == false

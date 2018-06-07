@@ -1,9 +1,13 @@
 <?php
 
-class FileOperatins
+class FileOperations
 {
+    /**
+     * Variable for file
+     * @var array|bool
+     */
     private $file;
-
+    private $error;
 
     /**
      * FileOperatins constructor.
@@ -12,7 +16,8 @@ class FileOperatins
      */
     public function __construct($pathFile)
     {
-        $this->file = @file ($pathFile);
+        $this->file = file ($pathFile, FILE_IGNORE_NEW_LINES);
+        $this->error = array();
     }
 
     /**
@@ -25,16 +30,85 @@ class FileOperatins
     }
 
     /**
-     * Функция разбиения строки на массив.
-     * От операции типа $file[1][5] отказался из-за ее
-     * специфики работы с многобайтными кодировками
+     * Get string
      *
-     * @param
-     * return array
+     * @param $numPosition int
+     * @return mixed|string
      */
-    public function getString()
+    public function getString($numLine)
     {
-        preg_split('/(?<!^)(?!$)/u', $data);
+        echo $numLine . "<br>";
+        $getNumLines = $this->getCountItem($this->file);
+        echo $getNumLines . "<br>";
+
+        if ($getNumLines > $numLine && is_numeric($numLine))
+        {
+            echo "<pre>";
+            $data = explode(PHP_EOL, $this->file);
+            echo $data[1];
+            $result = $this->file()[4];
+            echo $result;
+
+            echo "</pre>";
+        }
+        else
+        {
+            $this->error = ['Get String' => ERROR_NUM_STRING];
+            $result = false;
+        }
+        return $result;
     }
 
+    /**
+     * Get symbol
+     * @param $numLine
+     * @param $numSymbol
+     * @return bool
+     */
+    public function getSymbol($numLine, $numSymbol)
+    {
+        $string = $this->getString(4);
+        $numSymbolLine = $this->getCountItem($string) -1;
+
+        if ($string && $numSymbol < $numSymbolLine )
+        {
+            $result = $string[$numSymbolLine];
+        }
+        else
+        {
+            $this->error = ['Get Symbol' => ERROR_NUM_SYMBOL];
+            $result = false;
+        }
+        return $result;
+    }
+
+
+    /**
+     * Return error
+     *
+     * @return array
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * Get num string|symbol
+     *
+     * @param $item
+     * @return int
+     */
+    private function getCountItem($item)
+    {
+        return count($item);
+    }
+
+    /**
+     * Unset file variable
+     */
+    private function __destruct()
+    {
+        unset($this->file);
+    }
 }
