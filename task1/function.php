@@ -96,7 +96,7 @@ function chmodCheckDir()
     $dirChmod = substr(sprintf('%o', fileperms(UPLOAD_DIR)), -4);
 
     if ($dirChmod != '0777') 
-    {
+    {echo 'test';
         $messForUser['error'] = CHMOD_DIR;
 
         return $messForUser;
@@ -148,20 +148,21 @@ function deleteFile ($file)
  * Листинг директории. Возвращает массив fileName => fileSize
  * @return array
  */
-function readDirr() 
+function readDirr()
 {
     $fileArray = array();
-
-    if ($handle = opendir(UPLOAD_DIR)) {
-        while (false !== ($file = readdir($handle))) {
-            if ($file != "." && $file != "..") {
-                if ($fileSize = getSize($file)) ;
+    if ($handle = opendir(UPLOAD_DIR))
+    {
+        while (false !== ($file = readdir($handle)))
+        {
+            if ($file != "." && $file != "..")
+            {
+                $fileSize = getSize($file);
                 $fileArray[$file] = $fileSize;
             }
         }
         closedir($handle);
     }
-
     return $fileArray;
 }
 

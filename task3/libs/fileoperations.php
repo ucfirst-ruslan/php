@@ -146,12 +146,4 @@ class FileOperations
     {
         return $this->error;
     }
-
-    /**
-     * Unset file variable
-     */
-    private function __destruct()
-    {
-        unset($this->file);
-    }
 }

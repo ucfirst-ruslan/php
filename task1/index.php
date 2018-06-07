@@ -20,10 +20,10 @@ if (!empty($_FILES))
     }
 }
 
-if (empty($chmodDir))
-{
+
+
     $arrDateDir = readDirr();
-}
+
 
 $title = 'File Uploads';
 $setIteration = 1;
