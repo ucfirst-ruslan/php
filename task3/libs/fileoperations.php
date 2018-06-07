@@ -2,31 +2,38 @@
 
 class FileOperations
 {
-    /**
-     * Variable for file
-     * @var array|bool
-     */
     private $file;
+    private $newFile;
     private $error;
+
 
     /**
      * FileOperatins constructor.
      *
      * @param $pathFile
      */
-    public function __construct($pathFile)
+    public function __construct()
     {
-        $this->file = file ($pathFile, FILE_IGNORE_NEW_LINES);
         $this->error = array();
+        $this->file = file(FILE_FOR_READ);
+        $this->newFile = $this->file;
     }
 
-    /**
-     * Возвращает файл в виде массива
-     * @return array|bool
-     */
-    public function getFile()
+    public function getData($numLine, $numSymbol = NULL)
     {
-        return $this->file;
+//        var_dump($numSymbol);
+        if ($numSymbol === NULL)
+            return $this->getLine($numLine);
+        else
+            return $this->getSymbol($numLine, $numSymbol);
+    }
+
+    public function setData($replace, $numLine, $numSymbol = NULL)
+    {
+        if ($numSymbol === NULL)
+            return $this->lineReplace($replace, $numLine);
+        else
+            return $this->symbolReplace($replace, $numLine, $numSymbol);
     }
 
     /**
@@ -35,21 +42,11 @@ class FileOperations
      * @param $numPosition int
      * @return mixed|string
      */
-    public function getString($numLine)
+    private function getLine($numLine)
     {
-        echo $numLine . "<br>";
-        $getNumLines = $this->getCountItem($this->file);
-        echo $getNumLines . "<br>";
-
-        if ($getNumLines > $numLine && is_numeric($numLine))
+        if (!empty($this->file[$numLine]))
         {
-            echo "<pre>";
-            $data = explode(PHP_EOL, $this->file);
-            echo $data[1];
-            $result = $this->file()[4];
-            echo $result;
-
-            echo "</pre>";
+            $result = $this->file[$numLine];
         }
         else
         {
@@ -61,18 +58,18 @@ class FileOperations
 
     /**
      * Get symbol
+     *
      * @param $numLine
      * @param $numSymbol
      * @return bool
      */
-    public function getSymbol($numLine, $numSymbol)
+    private function getSymbol($numLine, $numSymbol)
     {
-        $string = $this->getString(4);
-        $numSymbolLine = $this->getCountItem($string) -1;
+        $line = $this->getLine($numLine);
 
-        if ($string && $numSymbol < $numSymbolLine )
+        if (!empty($line[$numSymbol]))
         {
-            $result = $string[$numSymbolLine];
+            $result = $line[$numSymbol];
         }
         else
         {
@@ -82,6 +79,63 @@ class FileOperations
         return $result;
     }
 
+    /**
+     * Replase line
+     *
+     * @param $numLine
+     * @param $lineReplace
+     * @return array|bool
+     */
+    private function lineReplace($lineReplace, $numLine)
+    {
+        $lineReplace = trim($lineReplace);
+
+        if (!empty($this->file[$numLine]))
+        {
+            $this->newFile[$numLine] = $lineReplace.PHP_EOL;
+            $this->writeFile();
+            $result = $this->newFile;
+        }
+        else
+        {
+            $this->error = ['Line Replace' => ERROR_LINE_REPLACE];
+            $result = false;
+        }
+        return $result;
+    }
+
+
+    /**
+     * Replace Symbol
+     *
+     * @param $numLine
+     * @param $numSymbol
+     * @param $symbolReplace
+     * @return array|bool
+     */
+    private function symbolReplace($symbolReplace, $numLine, $numSymbol)
+    {
+        if (!empty($this->file[$numLine][$numSymbol]))
+        {
+            $this->newFile[$numLine][$numSymbol] = $symbolReplace;
+            $this->writeFile();
+            $result = $this->newFile;
+        }
+        else
+        {
+            $this->error = ['Symbol Replace' => ERROR_SYMBOL_REPLACE];
+            $result = false;
+        }
+        return $result;
+    }
+
+    /**
+     * Write new file
+     */
+    private function writeFile()
+    {
+        file_put_contents(NEW_FILE, $this->newFile,LOCK_EX);
+    }
 
     /**
      * Return error
@@ -91,17 +145,6 @@ class FileOperations
     public function getError()
     {
         return $this->error;
-    }
-
-    /**
-     * Get num string|symbol
-     *
-     * @param $item
-     * @return int
-     */
-    private function getCountItem($item)
-    {
-        return count($item);
     }
 
     /**

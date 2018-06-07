@@ -4,16 +4,18 @@ include_once 'libs/config.php';
 include_once 'libs/fileoperations.php';
 
 
-$fileObj = new FileOperations(FILE_FOR_READ);
-$file = $fileObj->getFile();
+$fileObj = new FileOperations();
 
-echo $fileObj->getString(4);
+$getLine = $fileObj->getData(5);
+
+$getSymbol = $fileObj->getData(5, 1);
+
+$replaceLine = $fileObj->setData("DTHdssegfsdegasdgfDHTS", 5);
+
+$replaceSymbol = $fileObj->setData("R", 4,4);
 
 $errors = $fileObj->getError();
 
+$title = 'Работа с файлом';
 
-foreach ($errors as $key => $data) {
-    echo $key . "  ";
-echo $data;
-    echo "<br>";
-}
+include_once 'template/index.php';
