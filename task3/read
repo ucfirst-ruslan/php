@@ -1,0 +1,8 @@
+Found a quick fix in the MAMP forums.
+Basically it seems MAMP is only allowing 2 versions of PHP to show up.
+Quick fix, rename the folders you're not bothered about using,
+for me this meant adding an "X" to my /Applications/MAMP/bin/php/php5.4.10_X folder.
+Now 5.2.17 and 5.3.20 show up in the mamp prefs.
+Done!
+Edit - if the PHP version you require isn't in the PHP folder,
+you can download the version you require from
