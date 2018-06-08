@@ -1,18 +1,16 @@
 <?php
 
-include_once 'basedb.php';
-
 class Mysql extends BaseDb
 {
-    private $dbName;
 
-    public __construct()
+    public function __construct()
     {
-        $this->dbName = DBNAME_MYSQL;
-        $dsn = "mysql:host=$this->host;dbname=$this->dbName;
-                charset=$this->charset";
+        $this->dbType = DB_TYPE_MYSQL;
+        $this->dbTable = DB_TABLE_MYSQL;
+
+        $this->db = DB;
+
         parent::__construct();
-        
     }
 
 }
