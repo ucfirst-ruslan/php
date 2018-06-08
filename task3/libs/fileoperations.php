@@ -21,7 +21,6 @@ class FileOperations
 
     public function getData($numLine, $numSymbol = NULL)
     {
-//        var_dump($numSymbol);
         if ($numSymbol === NULL)
             return $this->getLine($numLine);
         else

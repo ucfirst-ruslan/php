@@ -13,16 +13,16 @@
     <?php endforeach;
     else: ?>
 
-      <p><strong>Получить линию</strong> <br><?= $getLine ?></p>
+      <p><strong>Получить строку</strong> <br><?= $getLine ?></p>
 
       <p><strong>Получить символ</strong> <br><?= $getSymbol ?></p>
 
-      <p><strong>Заменить линию</strong> <br>
+      <p><strong>Заменить строку</strong> <br>
       <?php foreach ($replaceLine as $line):?>
           <?= $line?><br>
       <?php endforeach;?> </p>
 
-      <p><strong>Заменить сивол</strong> <br>
+      <p><strong>Заменить символ</strong> <br>
       <?php foreach ($replaceSymbol as $symbol):?>
           <?= $symbol?><br>
       <?php endforeach;
