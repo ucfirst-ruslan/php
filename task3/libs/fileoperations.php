@@ -21,7 +21,7 @@ class FileOperations
 
     public function getData($numLine, $numSymbol = NULL)
     {
-        if ($numSymbol === NULL)
+        if (is_null($numSymbol))
             return $this->getLine($numLine);
         else
             return $this->getSymbol($numLine, $numSymbol);
@@ -29,7 +29,7 @@ class FileOperations
 
     public function setData($replace, $numLine, $numSymbol = NULL)
     {
-        if ($numSymbol === NULL)
+        if (is_null($numSymbol))
             return $this->lineReplace($replace, $numLine);
         else
             return $this->symbolReplace($replace, $numLine, $numSymbol);

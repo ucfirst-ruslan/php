@@ -1,6 +1,6 @@
 <?php
 
-include_once 'basedb.php'
+include_once 'basedb.php';
 
 class Mysql extends BaseDb
 {
