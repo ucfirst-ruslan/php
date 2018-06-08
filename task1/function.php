@@ -58,7 +58,8 @@ function checkFileName ($filename)
             $fileTmp[$countArray]++;
             $file[0] = implode("_", $fileTmp);
 
-        } else 
+        }
+        else
         {
             $file[0] = $file[0] ."_1";
         }
@@ -95,12 +96,10 @@ function chmodCheckDir()
 {
     $dirChmod = substr(sprintf('%o', fileperms(UPLOAD_DIR)), -4);
 
-    if ($dirChmod != '0777') 
-    {echo 'test';
+    if ($dirChmod != "0777")
+    {
         $messForUser['error'] = CHMOD_DIR;
-
         return $messForUser;
-
     }
     return false;
 }
@@ -123,25 +122,21 @@ function deleteFile ($file)
             if (!unlink($fileDel)) 
             {
                 $error = DELETE_FILE_ERROR;
-            } else {
-                $messForUser['success'] = DELETE_SUCCES;
             }
-
-        } else 
+            else
+            {
+                $messForUser['success'] = DELETE_SUCCES;
+                return $messForUser;
+            }
+        }
+        else
         {
             $error = DELETE_FILE_NOT;
         }
     }
+    $messForUser['error'] = $error;
 
-    if (empty($error)) 
-    {
-        return $messForUser;
-    } else 
-    {
-        $messForUser['error'] = $error;
-
-        return $messForUser;
-    }
+    return $messForUser;
 }
 
 /**
@@ -151,6 +146,7 @@ function deleteFile ($file)
 function readDirr()
 {
     $fileArray = array();
+
     if ($handle = opendir(UPLOAD_DIR))
     {
         while (false !== ($file = readdir($handle)))

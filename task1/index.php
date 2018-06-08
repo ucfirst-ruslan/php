@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors', 1);
 
 include_once 'config.php';
 include_once 'function.php';
@@ -12,17 +11,19 @@ if(!empty($_POST['delete']))
 
 $chmodDir = chmodCheckDir();
 
-if (!empty($_FILES))
+if (empty($chmodDir))
 {
-    if (empty($chmodDir))
+    $arrDateDir = readDirr();
+
+    if (!empty($_FILES))
     {
         $messForUser = upload();
     }
 }
-
-
-
-    $arrDateDir = readDirr();
+else
+{
+    $messForUser = $chmodDir;
+}
 
 
 $title = 'File Uploads';
