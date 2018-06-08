@@ -13,12 +13,12 @@ $chmodDir = chmodCheckDir();
 
 if (empty($chmodDir))
 {
-    $arrDateDir = readDirr();
-
     if (!empty($_FILES))
     {
         $messForUser = upload();
     }
+	
+	$arrDateDir = readDirr();
 }
 else
 {
