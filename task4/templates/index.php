@@ -1,32 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title><?= $title ?></title>
-<body>
+	<meta charset="utf-8">
+	<title><?= $title ?></title>
+	<!-- Bootstrap core CSS -->
+	<link href="templates/css/bootstrap.min.css"
+	      rel="stylesheet">
+	<style>
+		.bg-light, .alert {
+			margin-top: 70px;
+		}
+	</style>
+</head>
 
-<br>
+<body id="page-top">
 
-<?php if (!empty($errors)): ?>
-    <?php foreach ($errors as $error):?>
-      <h3> Ошибка: <?= $error ?> </h3>
-    <?php endforeach;
-    else: ?>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+	<div class="container">
+		<a class="navbar-brand js-scroll-trigger" href="#page-top"><?= $title ?></a>
 
-      <p><strong>Получить строку</strong> <br><?= $getLine ?></p>
+	</div>
+</nav>
 
-      <p><strong>Получить символ</strong> <br><?= $getSymbol ?></p>
+<?php if ($errorMysql): ?>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<div class="alert alert-danger" role="alert">
+			  <?= $errorMysql ?>
+					</div>
+				</div>
+			</div>
+	</section>
+<?php endif; ?>
+<?php //if ($errorPgsql): ?>
+<!--	<section>-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col-lg-8 mx-auto">-->
+<!--					<div class="alert alert-danger" role="alert">-->
+<!--			  --><?//= $errorPgsql ?>
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--	</section>-->
+<?php //endif; ?>
 
-      <p><strong>Заменить строку</strong> <br>
-      <?php foreach ($replaceLine as $line):?>
-          <?= $line?><br>
-      <?php endforeach;?> </p>
 
-      <p><strong>Заменить символ</strong> <br>
-      <?php foreach ($replaceSymbol as $symbol):?>
-          <?= $symbol?><br>
-      <?php endforeach;
-    endif; ?>
+<section id="services" class="bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 mx-auto">
+				<h3>MySQL</h3>
+				<h5>Insert in DB</h5>
+				<p class="lead">id of the record:
+			<?= $mysqlInsert ?>
+				</p>
+				<h5>Update record DB</h5>
+				<p class="lead">The term is affected:
+			<?= $mysqlUpdate ?>
+				</p>
+				<h5>Select record DB</h5>
+				<p class="lead">Select cell 'userdata' =
+			<?php foreach ($mysqlSelect as $val): ?>
+				<?= $val ?>
+			<?php endforeach; ?>
+				</p>
+				<h5>Update record DB</h5>
+				<p class="lead">Delete of the record:
+			<?= $mysqlDelete ?>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 mx-auto">
+				<h3>PgSQL</h3>
+				<h5>Insert in DB</h5>
+				<p class="lead">id of the record:
+			<?= $pgsqlInsert ?>
+				</p>
+				<h5>Update record DB</h5>
+				<p class="lead">The term is affected:
+			<?= $pgsqlUpdate ?>
+				</p>
+				<h5>Select record DB</h5>
+				<p class="lead">Select cell 'userdata' =
+			<?php foreach ($pgsqlSelect as $val): ?>
+				<?= $val ?>
+			<?php endforeach; ?>
+				</p>
+				<h5>Update record DB</h5>
+				<p class="lead">Delete of the record:
+			<?= $pgsqlDelete ?>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="m-0 text-center text-white">Copyright &copy; 2018</p>
+	</div>
+	<!-- /.container -->
+</footer>
+
 
 </body>
+
 </html>

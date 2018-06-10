@@ -1,42 +1,61 @@
-<?php
+<?php ini_set('display_errors', 1);
 
-include_once 'libs/config.php';
-include_once 'libs/baseDb.php';
+
+include_once 'libs/db_config.php';
+include_once 'libs/error_config.php';
+
 include_once 'libs/mysql.php';
 include_once 'libs/pgsql.php';
 
-$mysql = new Mysql();
+$mysql = new MySQL();
 
-//Insert Mysql
-$values = array('userid'=>'user10', 'userdata'=>'Some text');
-$mysqlInsertId = $mysql->insert($values);
-if ($mysqlInsertId)
-{
-    $mysqlInsertId = 'Insert in Mysql table: #'.$mysqlInsertId;
-}
+$mysql->where('userid', 'user11');
+$mysqlSelect = $mysql->select(DB_TABLE_MYSQL, ['userdata']);
 
-//Delete Mysql
-$where = array('userdata'=>'Some text');
-$mysqlDeleteRows = $mysql->delete($where);
-if ($mysqlDeleteRows)
-{
-    $mysqlDeleteRows = 'Delete row(s) in Mysql table: #'.$mysqlDeleteRows;
-}
+$mysqlInsert = $mysql->insert(DB_TABLE_MYSQL, [
+	'userid'=> 'user10',
+     'userdata'=>'Some text'
+]);
 
-$set = array('userdata'=>"Some other text");
-$values = array('userid'=>'user10');
-$mysql->update($set, $values);
-if ($mysqlDeleteRows)
-{
-    $mysqlDeleteRows = 'Delete row(s) in Mysql table: #'.$mysqlDeleteRows;
-}
-//$mysql->setSelect = 'userid';
-//$where = array('id'=>5);
+
+$mysql->where('id', '16');
+$mysqlUpdate = $mysql->update(DB_TABLE_MYSQL, [
+	'userid'=> 'user10',
+	'userdata'=>'Some anoter text'
+]);
+
+
+$mysql->where('id', '14');
+$mysqlDelete = $mysql->delete(DB_TABLE_MYSQL);
+
+
+//$pgsql = new PgSQL();
 //
-//print_r($mysql->select('*', $where));
+//$pgsql->where('userid', 'user11');
+//$pgsqlSelect = $pgsql->select(DB_TABLE_PGSQL, ['userdata']);
 //
-//$values = array('genre'=>5);
-//$mysql->insert($values);
+//$pgsqlInsert = $pgsql->insert(DB_TABLE_PGSQL, [
+//	'userid'=> 'user10',
+//	'userdata'=>'Some text'
+//]);
 //
-//$values = array('id'=>7);
-//$mysql->delete($values);
+//
+//$pgsql->where('id', '16');
+//$pgsqlUpdate = $pgsql->update(DB_TABLE_PGSQL, [
+//	'userid'=> 'user10',
+//	'userdata'=>'Some anoter text'
+//]);
+//
+//
+//$pgsql->where('id', '14');
+//$pgsqlDelete = $pgsql->delete(DB_TABLE_PGSQL);
+
+
+
+
+$errorMysql = $mysql->getErrorMessage();
+//$errorPgsql = $pgsql->getErrorMessage();
+
+$title = "DataBase Class";
+
+include_once 'templates/index.php';
