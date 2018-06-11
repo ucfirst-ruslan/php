@@ -48,7 +48,7 @@ class libSQL implements iSQL
 				$column = [];
 				foreach ($columns as $val)
 				{
-					$column[] .= $this->fieldQuotes($val);
+					$column[] = $this->fieldQuotes($val);
 				}
 
 				$fields = implode(",", $column);
@@ -65,13 +65,14 @@ class libSQL implements iSQL
 			{
 				foreach ($this->where as $key=>$val)
 				{
-					$cond .= $key;
-					$value[] .= $val;
+					$cond = $key;
+					$value[] = $val;
 				}
 				$where = ' WHERE '.$cond;
 			}
 
-			$sql = 'SELECT '.$fields.' FROM '.$tableVerif.$where.$this->limit;
+			$sql = 'SELECT '.$fields.' FROM '.$table.$where.$this->limit;
+
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
 			return $stm->fetch();
@@ -102,8 +103,8 @@ class libSQL implements iSQL
 			{
 				foreach ($updateArray as $key=>$val)
 				{
-					$column[] .= $this->fieldQuotes($key).'=?';
-					$value[] .= $val;
+					$column[] = $this->fieldQuotes($key).'=?';
+					$value[] = $val;
 				}
 			}
 
@@ -112,8 +113,8 @@ class libSQL implements iSQL
 			{
 				foreach ($this->where as $key=>$val)
 				{
-					$cond .= $key;
-					$value[] .= $val;
+					$cond = $key;
+					$value[] = $val;
 				}
 			}
 
@@ -154,20 +155,19 @@ class libSQL implements iSQL
 			{
 				foreach ($insertArray as $key=>$val)
 				{
-					$column[] .= $this->fieldQuotes($key);
-					$plholder[] .= '?';
-					$value[] .= $val;
+					$column[] = $this->fieldQuotes($key);
+					$plholder[] = '?';
+					$value[] = $val;
 				}
 			}
 
 			$fields = implode(",", $column);
 			$plaseholder = implode(",", $plholder);
 
-			$sql = 'INSERT INTO '.$tableVerif.' ('.$fields.') VALUES ('.$plaseholder.')';
-
+			$sql = 'INSERT INTO '.$table.' ('.$fields.') VALUES ('.$plaseholder.')';
+echo $sql;
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
-
 			return $this->pdo->lastInsertId();
 		}
 		catch(PDOException $e)

@@ -35,18 +35,18 @@
 			</div>
 	</section>
 <?php endif; ?>
-<?php //if ($errorPgsql): ?>
-<!--	<section>-->
-<!--		<div class="container">-->
-<!--			<div class="row">-->
-<!--				<div class="col-lg-8 mx-auto">-->
-<!--					<div class="alert alert-danger" role="alert">-->
-<!--			  --><?//= $errorPgsql ?>
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--	</section>-->
-<?php //endif; ?>
+<?php if ($errorPgsql): ?>
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<div class="alert alert-danger" role="alert">
+			  <?//= $errorPgsql ?>
+					</div>
+				</div>
+			</div>
+	</section>
+<?php endif; ?>
 
 
 <section id="services" class="bg-light">

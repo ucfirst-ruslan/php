@@ -7,55 +7,52 @@ include_once 'libs/error_config.php';
 include_once 'libs/mysql.php';
 include_once 'libs/pgsql.php';
 
-$mysql = new MySQL();
-
-$mysql->where('userid', 'user11');
-$mysqlSelect = $mysql->select(DB_TABLE_MYSQL, ['userdata']);
+/* $mysql = new MySQL();
 
 $mysqlInsert = $mysql->insert(DB_TABLE_MYSQL, [
 	'userid'=> 'user10',
-     'userdata'=>'Some text'
+    'userdata'=>'Some text'
 ]);
 
+$mysql->where('userid', 'user10');
+$mysqlSelect = $mysql->select(DB_TABLE_MYSQL, ['userdata']);
 
-$mysql->where('id', '16');
+$mysql->where('userid', 'user10');
 $mysqlUpdate = $mysql->update(DB_TABLE_MYSQL, [
 	'userid'=> 'user10',
 	'userdata'=>'Some anoter text'
 ]);
 
+$mysql->where('userid', 'user10');
+$mysqlDelete = $mysql->delete(DB_TABLE_MYSQL); */
 
-$mysql->where('id', '14');
-$mysqlDelete = $mysql->delete(DB_TABLE_MYSQL);
 
+$pgsql = new PgSQL();
 
-//$pgsql = new PgSQL();
-//
-//$pgsql->where('userid', 'user11');
-//$pgsqlSelect = $pgsql->select(DB_TABLE_PGSQL, ['userdata']);
-//
-//$pgsqlInsert = $pgsql->insert(DB_TABLE_PGSQL, [
-//	'userid'=> 'user10',
-//	'userdata'=>'Some text'
-//]);
-//
-//
-//$pgsql->where('id', '16');
-//$pgsqlUpdate = $pgsql->update(DB_TABLE_PGSQL, [
-//	'userid'=> 'user10',
-//	'userdata'=>'Some anoter text'
-//]);
-//
-//
-//$pgsql->where('id', '14');
-//$pgsqlDelete = $pgsql->delete(DB_TABLE_PGSQL);
+$pgsqlInsert = $pgsql->insert(DB_TABLE_PGSQL, [
+	'userid'=> 'user10',
+    'userdata'=>'Some text'
+]);
+echo $pgsqlInsert;
+
+$pgsql->where('userid', 'user10');
+$pgsqlSelect = $pgsql->select(DB_TABLE_PGSQL, ['userdata']);
+var_dump ($pgsqlSelect);
+$pgsql->where('userid', 'user10');
+$pgsqlUpdate = $pgsql->update(DB_TABLE_PGSQL, [
+	'userid'=> 'user10',
+	'userdata'=>'Some anoter text'
+]);
+
+$pgsql->where('userid', 'user10');
+$pgsqlDelete = $pgsql->delete(DB_TABLE_PGSQL);
 
 
 
 
-$errorMysql = $mysql->getErrorMessage();
-//$errorPgsql = $pgsql->getErrorMessage();
+//$errorMysql = $mysql->getErrorMessage();
+$errorPgsql = $pgsql->getErrorMessage();
 
 $title = "DataBase Class";
 
-include_once 'templates/index.php';
+//include_once 'templates/index.php';

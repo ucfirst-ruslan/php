@@ -50,6 +50,6 @@ class PgSQL extends libSQL
 	 */
 	protected function fieldQuotes($forQuotes)
 	{
-		return "'".addslashes($forQuotes)."''";
+		return '"'.addslashes($forQuotes).'"';
 	}
 }
