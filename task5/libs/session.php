@@ -2,24 +2,26 @@
 
 class Session implements iWorkData
 {
-    public __construct()
-    {
-        session_start();
-    }
+	public function __construct()
+	{
+		session_start();
+	}
 
-    public function getData($key)
-    {
-        return $_SESSION[$key];
-    }
+	public function getData($key)
+	{
+		return $_SESSION[$key];
+	}
 
-    public function saveData($key, $val)
-    {
-        $_SESSION[$key] = $val;
-    }
+	public function saveData($key, $val)
+	{
+		$_SESSION[$key] = $val;
+	}
 
-    public function deleteData($key)
-    {
-        $_SESSION[$key] = '';
-        return true;
-    }
+	public function deleteData($key)
+	{
+		$_SESSION[$key] = '';
+
+		return true;
+	}
+}
 

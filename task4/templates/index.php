@@ -96,7 +96,7 @@
 				<?= $val ?>
 			<?php endforeach; ?>
 				</p>
-				<h5>Update record DB</h5>
+				<h5>Delete record DB</h5>
 				<p class="lead">Delete of the record:
 			<?= $pgsqlDelete ?>
 				</p>

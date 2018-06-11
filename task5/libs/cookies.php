@@ -17,6 +17,6 @@ class Cookies implements iWorkData
 
     public function deleteData($key)
     {
-        return setcookie($key, "", time()-3600);
+        return setcookie($key, '', time()-3600);
     }
 }
