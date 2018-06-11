@@ -58,10 +58,6 @@
 				<p class="lead">id of the record:
 			<?= $mysqlInsert ?>
 				</p>
-				<h5>Update record DB</h5>
-				<p class="lead">The term is affected:
-			<?= $mysqlUpdate ?>
-				</p>
 				<h5>Select record DB</h5>
 				<p class="lead">Select cell 'userdata' =
 			<?php foreach ($mysqlSelect as $val): ?>
@@ -69,6 +65,10 @@
 			<?php endforeach; ?>
 				</p>
 				<h5>Update record DB</h5>
+				<p class="lead">The term is affected:
+			<?= $mysqlUpdate ?>
+				</p>
+				<h5>Delete record DB</h5>
 				<p class="lead">Delete of the record:
 			<?= $mysqlDelete ?>
 				</p>
@@ -86,15 +86,15 @@
 				<p class="lead">id of the record:
 			<?= $pgsqlInsert ?>
 				</p>
-				<h5>Update record DB</h5>
-				<p class="lead">The term is affected:
-			<?= $pgsqlUpdate ?>
-				</p>
 				<h5>Select record DB</h5>
 				<p class="lead">Select cell 'userdata' =
 			<?php foreach ($pgsqlSelect as $val): ?>
 				<?= $val ?>
 			<?php endforeach; ?>
+				</p>
+				<h5>Update record DB</h5>
+				<p class="lead">The term is affected:
+			<?= $pgsqlUpdate ?>
 				</p>
 				<h5>Delete record DB</h5>
 				<p class="lead">Delete of the record:
