@@ -6,7 +6,7 @@ include_once 'libs/db.php';
 
 
 $key = 'userid';
-$val = 'Ruslan';
+$val = 'user10';
 
 $cookies = new Cookies();
 

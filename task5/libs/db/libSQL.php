@@ -15,7 +15,7 @@ class libSQL implements iSQL
 
     public $errorMessage;
     public $errorMessageDB;
-
+	
 	public function __construct()
 	{
 		$this->limit = ' LIMIT ' . 1;
@@ -41,14 +41,14 @@ class libSQL implements iSQL
 	public function select($table, $columns)
 	{
 		try {
-			$tableVerif = $this->verifedTable($table);
+			//$tableVerif = $this->verifedTable($table);
 
 			if (is_array($columns))
 			{
 				$column = [];
 				foreach ($columns as $val)
 				{
-					$column[] .= $this->fieldQuotes($val);
+					$column[] = $this->fieldQuotes($val);
 				}
 
 				$fields = implode(",", $column);
@@ -66,12 +66,13 @@ class libSQL implements iSQL
 				foreach ($this->where as $key=>$val)
 				{
 					$cond .= $key;
-					$value[] .= $val;
+					$value[] = $val;
 				}
 				$where = ' WHERE '.$cond;
 			}
 
-			$sql = 'SELECT '.$fields.' FROM '.$tableVerif.$where.$this->limit;
+			$sql = 'SELECT '.$fields.' FROM '.$table.$where.$this->limit;
+
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
 			return $stm->fetch();
@@ -95,15 +96,15 @@ class libSQL implements iSQL
 	{
 		try
 		{
-			$tableVerif = $this->verifedTable($table);
+			//$tableVerif = $this->verifedTable($table);
 			$value = [];
 			$column = [];
 			if ($updateArray)
 			{
 				foreach ($updateArray as $key=>$val)
 				{
-					$column[] .= $this->fieldQuotes($key).'=?';
-					$value[] .= $val;
+					$column[] = $this->fieldQuotes($key).'=?';
+					$value[] = $val;
 				}
 			}
 
@@ -113,12 +114,12 @@ class libSQL implements iSQL
 				foreach ($this->where as $key=>$val)
 				{
 					$cond .= $key;
-					$value[] .= $val;
+					$value[] = $val;
 				}
 			}
 
 			$fields = implode(",", $column);
-			$sql = 'UPDATE '.$tableVerif.' SET '.$fields.' WHERE '.$cond;
+			$sql = 'UPDATE '.$table.' SET '.$fields.' WHERE '.$cond;
 
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
@@ -146,7 +147,7 @@ class libSQL implements iSQL
 	{
 		try
 		{
-			$tableVerif = $this->verifedTable($table);
+			//$tableVerif = $this->verifedTable($table);
 			$column = array();
 			$plholder = array();
 			$value = array();
@@ -154,21 +155,20 @@ class libSQL implements iSQL
 			{
 				foreach ($insertArray as $key=>$val)
 				{
-					$column[] .= $this->fieldQuotes($key);
-					$plholder[] .= '?';
-					$value[] .= $val;
+					$column[] = $this->fieldQuotes($key);
+					$plholder[] = '?';
+					$value[] = $val;
 				}
 			}
 
-			$fields = implode(",", $column);
-			$plaseholder = implode(",", $plholder);
+			$fields = implode(", ", $column);
+			$plaseholder = implode(", ", $plholder);
 
-			$sql = 'INSERT INTO '.$tableVerif.' ('.$fields.') VALUES ('.$plaseholder.')';
-
+			$sql = 'INSERT INTO '.$table.' ('.$fields.') VALUES ('.$plaseholder.')';
 			$stm = $this->pdo->prepare($sql);
-			$stm->execute($value);
-
-			return $this->pdo->lastInsertId();
+			
+			return $stm->execute($value);
+			//return $this->pdo->lastInsertId();
 		}
 		catch(PDOException $e)
 		{
@@ -188,7 +188,7 @@ class libSQL implements iSQL
 	{
 		try
 		{
-			$tableVerif = $this->verifedTable($table);
+			//$tableVerif = $this->verifedTable($table);
 
 			$cond = '';
 			$value = [];
@@ -197,15 +197,14 @@ class libSQL implements iSQL
 				foreach ($this->where as $key=>$val)
 				{
 					$cond .= $key;
-					$value[] .= $val;
+					$value[] = $val;
 				}
 			}
 
-			$sql = 'DELETE FROM '.$tableVerif.' WHERE '.$cond.$this->limit;
+			$sql = 'DELETE FROM '.$table.' WHERE '.$cond;
 
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
-
 			return $stm->rowCount();
 		}
 		catch(PDOException $e)
