@@ -15,13 +15,13 @@ class Session implements iWorkData
 	public function saveData($key, $val)
 	{
 		$_SESSION[$key] = $val;
+		return $_SESSION[$key];
 	}
 
 	public function deleteData($key)
 	{
 		$_SESSION[$key] = '';
-
-		return true;
+		return $_SESSION[$key];
 	}
 }
 

@@ -7,16 +7,21 @@ class Cookies implements iWorkData
 
 	public function getData($key)
 	{
-		return $_COOKIE[$key];
+		if (!empty($_COOKIE[$key]))
+			return $_COOKIE[$key];
+		else
+			return false;
 	}
 
 	public function saveData($key, $val)
 	{
-		return setcookie($key, $val, time() + 3600);
+		setcookie($key, $val, time() + 3600);
+		return true;
 	}
 
 	public function deleteData($key)
 	{
-		return setcookie($key, '', time() - 3600);
+		setcookie($key, '', time() - 3600);
+		return true;
 	}
 }

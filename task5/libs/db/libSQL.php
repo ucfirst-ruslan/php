@@ -60,6 +60,7 @@ class libSQL implements iSQL
 
 			$cond = '';
 			$value = array();
+			$where = '';
 			if ($this->where)
 			{
 				foreach ($this->where as $key=>$val)
@@ -67,9 +68,10 @@ class libSQL implements iSQL
 					$cond .= $key;
 					$value[] .= $val;
 				}
+				$where = ' WHERE '.$cond;
 			}
 
-			$sql = 'SELECT '.$fields.' FROM '.$tableVerif.' WHERE '.$cond.$this->limit;
+			$sql = 'SELECT '.$fields.' FROM '.$tableVerif.$where.$this->limit;
 			$stm = $this->pdo->prepare($sql);
 			$stm->execute($value);
 			return $stm->fetch();
