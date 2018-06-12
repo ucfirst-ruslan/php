@@ -56,17 +56,5 @@ $band->addMusician($myz4);
 $band->addMusician($myz5);
 
 
-echo $band->getName(). '<br>';
-echo $band->getGenre(). '<br>';
-	foreach ($band->getMusician() as $musician)
-	{
-		echo $musician->getMusicianName(). '<br>';
-		echo $musician->getMusicianType(). '<br>';
-		foreach ($musician->getInstrument() as $instrument)
-		{
-			echo $instrument->getName(). '<br>';
-			echo $instrument->getCategory(). '<br>';
-		}
-	}
-	$title = "Паттерн \"Composite\"";
+$title = "Паттерн \"Composite\"";
 include_once TEMPLATE_DIR.TEMPLATE_FILE;
