@@ -1,8 +1,8 @@
 <?php
 
-include_once 'libSQL.php';
+include_once 'libLibSQL.php';
 
-class PgSQL extends libSQL
+class PgSQL extends libLibSQL
 {
 	protected $dbType;
 	protected $pass;

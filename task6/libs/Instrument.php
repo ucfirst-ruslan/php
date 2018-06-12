@@ -5,27 +5,27 @@ include_once 'iInstrument.php';
 
 class Instrument implements iInstrument
 {
-	private $name;
-	private $category;
+	private $nameInstrument;
+	private $categoryInstrument;
 
 
 	public function getName()
 	{
-		return $this->name;
+		return $this->nameInstrument;
 	}
 
 	public function getCategory()
 	{
-		return $this->category;
+		return $this->categoryInstrument;
 	}
 
 	public function setName($name)
 	{
-		$this->name = $name;
+		$this->nameInstrument = $name;
 	}
 
 	public function setCategory($category)
 	{
-		$this->category = $category;
+		$this->categoryInstrument = $category;
 	}
 }

@@ -4,7 +4,7 @@ include_once 'iSQL.php';
 include_once 'error_config.php';
 
 
-class libSQL implements iSQL
+class libLibSQL implements iLibSQL
 {
     protected $db;  //user1
     protected $dsn;
