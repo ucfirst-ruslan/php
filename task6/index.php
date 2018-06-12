@@ -1,4 +1,4 @@
-<?php ini_set('display_errors', 1);
+<?php //ini_set('display_errors', 1);
 
 include_once 'libs/config.php';
 include_once 'libs/Instrument.php';
