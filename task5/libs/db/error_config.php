@@ -6,3 +6,4 @@ define('ERROR_DELETE', 'An error occurred during the DELETE operation. Check opt
 define('ERROR_INSERT', 'An error occurred during the INSERT operation. Check options');
 define('ERROR_UPDATE', 'An error occurred during the UPDATE operation. Check options');
 define('ERROR_SELECT', 'An error occurred during the SELECT operation. Check options');
+

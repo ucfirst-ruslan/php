@@ -69,12 +69,14 @@
 		<div class="row">
 			<div class="col-lg-8 mx-auto">
 				<h4>Cookies</h4>
-				<p class="lead">Cookies work:
-			<?= $cookiesWork ?>
+				<p class="lead">Cookies set:
+			<?= $cookiesSet ?>
 				</p>
-				<p class="lead"> Если отключить вызов метода $cookies->deleteData(),
-					cookies будут доступны в $_COOKIE[] при следующей перезагрузки
-					страницы в браузере.
+				<p class="lead">Cookies:
+			<?= $cookiesGet ?>
+				</p>
+				<p class="lead">Cookies delete:
+			<?= $cookiesDel ?>
 				</p>
 			</div>
 		</div>
@@ -87,13 +89,13 @@
 			<div class="col-lg-8 mx-auto">
 				<h4>Session</h4>
 				<p class="lead">Session set:
-			<?= $saveSession ?>
+			<?= $sessionSet ?>
 				</p>
 				<p class="lead">Session:
-			<?= $getSession ?>
+			<?= $sessionGet ?>
 				</p>
-				<p class="lead">Cookies delete:
-			<?= $deleteSession ?>
+				<p class="lead">Session delete:
+			<?= $sessionDel ?>
 				</p>
 			</div>
 		</div>

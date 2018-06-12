@@ -1,7 +1,7 @@
 <?php
 
 
-interface iSQL
+interface iLibSQL
 {
     public function select ($table, $columns);
     public function insert ($table, array$updateArray);

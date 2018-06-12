@@ -1,8 +1,8 @@
 <?php
 
-include_once 'libSQL.php';
+include_once 'LibSQL.php';
 
-class MySQL extends libSQL
+class MySQL extends LibSQL
 {
 	protected $dbType;
 	protected $pass;

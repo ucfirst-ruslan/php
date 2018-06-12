@@ -9,7 +9,10 @@ class Session implements iWorkData
 
 	public function getData($key)
 	{
-		return $_SESSION[$key];
+		if (isset($_SESSION[$key]))
+			return $_SESSION[$key];
+		else
+			return false;
 	}
 
 	public function saveData($key, $val)
@@ -20,8 +23,9 @@ class Session implements iWorkData
 
 	public function deleteData($key)
 	{
-		$_SESSION[$key] = '';
-		return $_SESSION[$key];
+		if (isset($_SESSION[$key]))
+			unset ($_SESSION[$key]);
+		return true;
 	}
 }
 

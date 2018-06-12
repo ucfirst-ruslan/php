@@ -40,7 +40,8 @@ class libSQL implements iSQL
 	 */
 	public function select($table, $columns)
 	{
-		try {
+		try
+		{
 			//$tableVerif = $this->verifedTable($table);
 
 			if (is_array($columns))
@@ -245,6 +246,10 @@ class libSQL implements iSQL
 		catch(PDOException $e)
 		{
 			$this->errorMessage = ERROR_WHERE_FIELD;
+		}
+		catch (Exception $e)
+		{
+			$this->errorMessage = '<br />' . $e->getMessage();
 		}
 	}
 
