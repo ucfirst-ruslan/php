@@ -16,12 +16,8 @@
 	</p>
 
 	<p><b>Subj:</b><br>
-	<select name="subj">
-		<option selected disabled>Select subj</option>
-		<option value="SUBJ_1"><?php ucfirst(SUBJ_1)?></option>
-		<option value="SUBJ_2"><?php ucfirst(SUBJ_2)?></option>
-		<option value="SUBJ_3"><?php ucfirst(SUBJ_3)?></option>
-    </select></p>
+	%SELECT%
+	</p>
    
 	<p><b>Message:</b><br>
 		<textarea name="message" cols="40" rows="5"></textarea></p>
