@@ -1,92 +1,58 @@
 <?php
 
 class ValidModel
-{ 
+{
 	private $error;
-	
-	public function __construct
+
+	public function __construct()
 	{
-		$this->error = [];
-	}	
- 	
-	public function getError()
+		$this->error = false;
+	}
+
+	public function getError(): string
 	{
 		return $this->error;
 	}
-	
+
 	public function checkEmail($email)
     {	    
 		if (preg_match( '/^[-0-9a-z_\.]+@[-0-9a-z^\.]+\.[a-z]{2,4}$/i',$email))
-		{
 			return 	$email;
-		}
 		else
-		{
-			$this->error['email'] = ERROR_VALIDATE_EMAIL;
-			return false;
-		}
-			
+			$this->error = true;
+		return false;
     }
 	
 	public function checkName($name)
 	{
-		$options = array(
-			'options' => array(
-                'min_range' => 3,
-                'max_range' => 30,
-            )
-        );
-        
-        if (filter_var($name, FILTER_VALIDATE_INT, $options) !== FALSE) 
-        {
-            return htmlspecialchars(trim($name));
-        }
+        if (preg_match("/^[a-zA-Z0-9_]{3,30}$/",$name))
+            return $name;
 		else
-		{
-			$this->error['name'] = ERROR_VALIDATE_NAME;
-			return false;
-		}	
+			$this->error = true;
+		return false;
 	}
    
-	public function checkSubj($subj)
+	public function checkDep($dep, $data)
 	{
-		$options = array(
-			'options' => array(
-                'min_range' => 7,
-                'max_range' => 10,
-            )
-        );
-        
-        if (filter_var($subj, FILTER_VALIDATE_INT, $options) !== FALSE) 
-        {
-            return htmlspecialchars(trim($subj));
-        }
+//		$options = array(
+//			'department_1'  => DEPARTMENT_1,
+//			'department_2'  => DEPARTMENT_2,
+//			'department_3'  => DEPARTMENT_3
+//		);
+
+        if (array_key_exists($dep, $data))
+            return $dep;
 		else
-		{
-			$this->error['subj'] = ERROR_VALIDATE_SUBJ;
-			return false;
-		}
-	}	
+			$this->error = true;
+		return false;
+	}
 
 	public function checkMessade($message)
 	{
-		$options = array(
-			'options' => array(
-            'min_range' => 3,
-            'max_range' => 1000,
-            )
-        );
-        
-        if (filter_var($message, FILTER_VALIDATE_INT, $options) !== FALSE) 
-        {
+        if ($message)
             return htmlspecialchars(trim($message));
-        }
 		else
-		{
-			$this->error['message'] = ERROR_VALIDATE_MESSAGE;
-			return false;
-		}
+			$this->error = true;
+		return false;
 	}
-	
-		
 }

@@ -2,10 +2,17 @@
 
 class HtmlHelpers
 {
+	/**
+	 * For task7
+	 * @param $name
+	 * @param $options
+	 * @param $selected
+	 * @return string
+	 */
 	public static function getDropdown($name, $options, $selected)
 	{
 		$select = '<select name="' . $name . '">';
-		$select .= '<option selected disabled>Select subj</option>';
+		$select .= '<option selected disabled>Select department</option>';
 		foreach ($options as $key => $val) {
 			if ($selected != $key)
 				$select .= '<option value="' . $key . '">' . $val . '</option>';

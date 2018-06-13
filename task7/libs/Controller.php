@@ -6,13 +6,19 @@ class Controller
 		private $view;
 
 		public function __construct()
-		{		
-  var_dump($_POST);
+		{
+echo'<pre>';
+var_dump($_POST);
+echo'</pre>';
+
 		    $this->model = new Model();
-			$this->view = new View(TEMPLATE);	
+			$this->view = new View(TEMPLATE);
+
+			$this->model->array();
 				
 			if(isset($_POST['email']))
-			{	
+			{
+
 				$this->pageSendMail();
 			}
 			else
@@ -20,7 +26,7 @@ class Controller
 				$this->pageDefault();	
 			}
 			
-			$this->view->templateRender();			
+			$this->view->templateRender();
 	    }	
 		
 		private function pageSendMail()
@@ -29,12 +35,17 @@ class Controller
 			{
 				$this->model->sendEmail();
 			}
-			$mArray = $this->model->getArray();		
+			else
+			{
+
+			}
+
+			$mArray = $this->model->getArray();
 	        $this->view->addToReplace($mArray);	
 		}	
 			    
 		private function pageDefault()
-		{   
+		{
 		   $mArray = $this->model->getArray();		
 	       $this->view->addToReplace($mArray);			   
 		}				
