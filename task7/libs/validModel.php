@@ -9,7 +9,7 @@ class ValidModel
 		$this->error = false;
 	}
 
-	public function getError(): string
+	public function getError()
 	{
 		return $this->error;
 	}
