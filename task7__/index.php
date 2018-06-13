@@ -6,6 +6,8 @@ include ('libs/Model.php');
 try
 {
   $obj = new Controller();
+
+  
 }
 catch(Exception $e)
 {
