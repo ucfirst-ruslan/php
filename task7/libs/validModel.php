@@ -17,7 +17,7 @@ class ValidModel
 	public function checkEmail($email)
     {	    
 		if (preg_match( '/^[-0-9a-z_\.]+@[-0-9a-z^\.]+\.[a-z]{2,4}$/i',$email))
-			return 	$email;
+			return true;
 		else
 			$this->error = true;
 		return false;
@@ -26,7 +26,7 @@ class ValidModel
 	public function checkName($name)
 	{
         if (preg_match("/^[a-zA-Z0-9_]{3,30}$/",$name))
-            return $name;
+            return true;
 		else
 			$this->error = true;
 		return false;
@@ -34,14 +34,8 @@ class ValidModel
    
 	public function checkDep($dep, $data)
 	{
-//		$options = array(
-//			'department_1'  => DEPARTMENT_1,
-//			'department_2'  => DEPARTMENT_2,
-//			'department_3'  => DEPARTMENT_3
-//		);
-
         if (array_key_exists($dep, $data))
-            return $dep;
+            return true;
 		else
 			$this->error = true;
 		return false;
@@ -49,10 +43,29 @@ class ValidModel
 
 	public function checkMessade($message)
 	{
-        if ($message)
-            return htmlspecialchars(trim($message));
+		if ($this->checkLength($message, 10, 1000))
+            return true;
 		else
 			$this->error = true;
 		return false;
+	}
+
+	public function checkDate($date)
+	{
+		if ($this->checkLength($date, 30, 50))
+			return true;
+		else
+			$this->error = true;
+		return false;
+	}
+
+
+
+	private function checkLength($value = "", $min, $max)
+	{
+		if (mb_strlen($value) >= $min && mb_strlen($value) <= $max)
+			return true;
+		else
+			return false;
 	}
 }

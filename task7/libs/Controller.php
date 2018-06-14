@@ -6,7 +6,10 @@ class Controller
 		private $view;
 
 		public function __construct()
-		{		
+		{
+echo'<pre>';
+var_dump($_POST);
+echo'</pre>';
 		    $this->model = new Model();
 			$this->view = new View(TEMPLATE);	
 				
@@ -28,6 +31,7 @@ class Controller
 			{
 				$this->model->sendEmail();
 			}
+
 			$mArray = $this->model->getArray();		
 	        $this->view->addToReplace($mArray);	
 		}	
