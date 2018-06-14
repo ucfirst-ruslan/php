@@ -59,7 +59,7 @@ class HtmlHelpers
 	 * @param array $datas ['0' => ['q', 'w', 'd']]
 	 * @return string
 	 */
-	public static function getTable(array $headData, array $datas)
+	public static function getTable($headData, $datas)
 	{
 		$table = '<table>';
 
@@ -74,8 +74,7 @@ class HtmlHelpers
 			$table .= '</tr>';
 		}
 
-
-		$a = 1;
+		$a = 0;
 		foreach ($datas as $data) {
 			$table .= '<tr>';
 
@@ -151,17 +150,18 @@ class HtmlHelpers
 	//$name string (имя группы радиокнопок)
 	//$data array [key=>value]($key передается на сервер)
 	//$check array [key=>check]('key' должен быть равен аналогичному значению из массива $data)
-	public static function getRadio($type, $name,array $data, $check)
+	public static function getRadio($type, $name, $data, $check = null)
 	{
 		$radio = '';
 		$i=1;
 
-		if (!($type === 'radio'))
+		if ($type !== 'radio')
 			$type = 'checkbox';
 
 		foreach ($data as $key=>$val)
 		{
-			if ($check[$key]) {
+			if ($key===$check) 
+			{
 				$radio .= '<input type="'.$type.'" checked id="choice'.$i.'" name="'.$name.'" value="'.$key. '">';
 			}
 			else
@@ -171,7 +171,6 @@ class HtmlHelpers
 			$radio .= '<label for="choice'.$i.'">'.$val.'</label><br>';
 			$i++;
 		}
-
 		return $radio;
 	}
 

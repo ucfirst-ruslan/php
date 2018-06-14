@@ -4,23 +4,22 @@ include_once 'helpers/htmlhelpers.php';
 class ModelTask9
 {
 	private $mArrey;
+	private $table;
 
 	public function __construct()
 	{
+		$this->table = [];
+		$this->tableArray();
+		
 		$this->mArrey = array(
 			'%TITLE%'       => 'Task #9',
-			'%ERRORS%'      => 'Empty field',
 			'%SELECT%'      => $this->select(),
-			'%ERR_NAME%'    => '',
-			'%ERR_EMAIL%'   => '',
-			'%ERR_DEP%'     => '',
-			'%ERR_MESS%'    => '',
-			'%ERR_DATE%'    => '',
-			'%FIELD_NAME%'  => '',
-			'%FIELD_EMAIL%' => '',
-			'%FIELD_MESS%'  => '',
-			'%MAIL_SEND%'   => '',
-			'%MAIL_ERROR%'  => ''
+			'%TABLE%'    	=> $this->table(),
+			'%LIST_UL%'     => $this->listOl(),
+			'%LIST_OL%'     => $this->listUl(),
+			'%DEF%'   		=> $this->def(),
+			'%RADIO%'	    => $this->radio(),
+			'%CHECKBOX%'  	=> $this->checkbox()
 		);
 	}
 
@@ -34,7 +33,69 @@ class ModelTask9
 		$selected = 'options_2';
 		return HtmlHelpers::getSelect('multi', $this->selectArray(), $selected, 3);
 	}
+	
+	private function table()
+	{
+		return HtmlHelpers::getTable($this->table['head'], $this->table['body']);
+	}
 
+	public function listOl()
+	{
+		return HtmlHelpers::getList('ol', $this->listArray());
+	}
+	
+	public function listUl()
+	{
+		return HtmlHelpers::getList('ul', $this->listArray());
+	}
+	
+	private function def()
+	{
+		return HtmlHelpers::getDefinitions($this->defArrey());
+	}
+	
+	public function radio()
+	{
+		return HtmlHelpers::getRadio('radio', 'radiobutton', $this->radioArray(), 'radio_3');
+	} 
+		
+	public function checkbox()
+	{
+		return HtmlHelpers::getRadio('checkbox', 'checkbutton',$this->selectArray());
+		
+	}
+	
+	private function radioArray()
+	{
+		return array(
+			'radio_1'  => 'Пункт 1',
+			'radio_2'  => 'Пункт 2',
+			'radio_3'  => 'Пункт 3'
+		);
+	}
+	
+	
+	private function listArray()
+	{
+		return array('Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5');
+	}
+	
+	private function defArrey()
+	{
+		return array(
+			'JPG'  => 'Формат для хранения изображений со сжатием',
+			'TIFF'  => 'Формат для хранения изображений без сжатия'
+		);
+	}
+	
+	private function tableArray()
+	{
+		$this->table['head'] = array('Пункт 1', 'Пункт 2');
+		$this->table['body'] = array('0' => array('ячейка 1', 'ячейка 2'),
+									 '1' => array('ячейка 3', 'ячейка 4')
+									 );
+									 
+	}
 	private function selectArray()
 	{
 		return array(

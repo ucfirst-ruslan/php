@@ -7,9 +7,6 @@ class Controller
 
 		public function __construct()
 		{
-echo'<pre>';
-var_dump($_POST);
-echo'</pre>';
 		    $this->model = new Model();
 			$this->view = new View(TEMPLATE);	
 				

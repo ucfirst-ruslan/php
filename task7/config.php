@@ -14,5 +14,5 @@ define(ERROR_VALIDATE_EMAIL, 'Email not valid');
 define(ERROR_VALIDATE_NAME, 'Name not valid');
 define(ERROR_VALIDATE_DEP, 'Department not valid');
 define(ERROR_VALIDATE_MESSAGE, 'Message not valid');
-define(ERROR_VALIDATE_DATE, 'You have JS disabled');
+define(ERROR_VALIDATE_DATE, 'JS error');
 

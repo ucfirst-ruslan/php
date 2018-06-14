@@ -73,10 +73,10 @@ class Model
 		$header .= 'Content-type: text/html; charset=utf8' . "\r\n";
 		$header .= 'X-Mailer: PHP/' . phpversion();
 
-		$message = "You have received a letter from ". $_POST["name"] . "\r\n";
-		$message .= $mess . "\r\n";
-		$message .= 'IP address: ' . $_SERVER['REMOTE_ADDR'] . "\r\n";
-		$message .= 'Client time: '.$_POST['date'] . "\r\n";
+		$message = "From: ". $_POST["name"] . "<br><br>\r\n";
+		$message .= $mess . "<br><br>\r\n";
+		$message .= 'IP address: ' . $_SERVER['REMOTE_ADDR'] . "<br>\r\n";
+		$message .= 'Client time: '.$_POST['date'] . "<br>\r\n";
 
 		return mail('ucfirst.ruslan@gmail.com', $dep[$_POST['department']], $message, $header);
 	}

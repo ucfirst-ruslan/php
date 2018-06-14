@@ -52,14 +52,12 @@ class ValidModel
 
 	public function checkDate($date)
 	{
-		if ($this->checkLength($date, 30, 50))
+		if ($this->checkLength($date, 30, 100))
 			return true;
 		else
 			$this->error = true;
 		return false;
 	}
-
-
 
 	private function checkLength($value = "", $min, $max)
 	{
