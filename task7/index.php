@@ -1,13 +1,13 @@
 <?php
 include ('config.php');
 include ('libs/Controller.php');
-include ('libs/ControllerTask9.php');
+include('libs/task9Controller.php');
 include ('libs/View.php');
 include ('libs/Model.php');
 try
 {
 	if (9 == $_GET['task'])
-		$obj = new ControllerTask9();
+		$obj = new Task9Controller();
 	else
 		$obj = new Controller();
 }

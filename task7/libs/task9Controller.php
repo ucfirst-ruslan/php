@@ -1,11 +1,11 @@
 <?php
-include ('libs/ModelTask9.php');
+include ('libs/Task9Model.php');
 
-class ControllerTask9
+class Task9Controller
 {
 	public function __construct()
 	{
-		$this->model = new ModelTask9();
+		$this->model = new Task9Model();
 		$this->view = new View(TEMPLATE_TASK9);
 
 		$this->page();

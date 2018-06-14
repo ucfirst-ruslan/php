@@ -95,13 +95,14 @@ class HtmlHelpers
 	}
 
 	/**
-	 * @param $type
-	 * @param $data
+	 * @param $type | Тип списка string|array
+	 * @param $data | данные в ассоциативном массиве
 	 * @return string
 	 */
-	public static function getList($type, $data)
+	public static function getList($type ='ul', $data)
 	{
 		//ol|ul | [ol, 'rever', 4]
+		// Остальные атрибуты не сделаны, т.к. их проще назначить в css
 		if (is_array($type) && $type[0] === 'ol')
 		{
 			$list = '<ol ';

@@ -1,7 +1,7 @@
 <?php
 include_once 'helpers/htmlhelpers.php';
 
-class ModelTask9
+class Task9Model
 {
 	private $mArrey;
 	private $table;
@@ -41,7 +41,8 @@ class ModelTask9
 
 	public function listOl()
 	{
-		return HtmlHelpers::getList('ol', $this->listArray());
+		$data = array('ol', 'rever', '10');
+		return HtmlHelpers::getList($data, $this->listArray());
 	}
 	
 	public function listUl()
