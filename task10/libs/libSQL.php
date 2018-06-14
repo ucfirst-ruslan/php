@@ -15,6 +15,9 @@ class libSQL implements iLibSQL
 	protected $where;
 	protected $bind;
 	protected $limit;
+	protected $joinQuery;
+	protected $leftJoin;
+	protected $joinIndex;
 
     public $errorMessage;
     public $errorMessageDB;
@@ -26,7 +29,11 @@ class libSQL implements iLibSQL
 		$this->limit = '';
 		$this->where = '';
 		$this->bind = array();
-
+		$this->joinQuery = array();
+		$this->leftJoin = array();
+		$this->joinIndex = 1;
+		
+		
 		$this->pdo = null;
 		$opt = [
 			PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -122,72 +129,81 @@ class libSQL implements iLibSQL
 				$columns = implode(",", $colArr);
 			}
 		}
-		$this->selectDistinct = 'SELECT DISTINCT'. $columns;
+		$this->selectDistinct = 'SELECT DISTINCT '. $columns;
 		return $this;
 	}
 	
 	public function where($condition, $bind)
 	{// WHERE id=:id1 or id=:id2
 	//where('id=:id1 or id=:id2', array(':id1'=>1, ':id2'=>2))
-		$this->where = $where;
+		$this->where = $condition;
 		$this-bind['where'] = $bind;
 		return $this;
 	}
 	
-	public function join()
 	
+	// JOIN `tbl_profile` ON user_id=id
+	// join('tbl_profile', 'user_id=id')
 	
-	
-	
-	/* public function select_($table, $columns)
+	// LEFT JOIN `pub`.`tbl_profile` `p` ON p.user_id=id AND type=1
+	// leftJoin('pub.tbl_profile p', 'p.user_id=id AND type=:type', array(':type'=>1))
+	public function join($table, $conditions, $params=array())
 	{
-		try
+		$tab = explode(".", $table);
+		$tab[0] = $this->stQuotes($tab[0]);
+		
+		if ($tab[1])
 		{
-			//$tableVerif = $this->verifedTable($table);
-
-			if (is_array($columns))
-			{
-				$column = [];
-				foreach ($columns as $val)
-				{
-					$column[] = $this->fieldQuotes($val);
-				}
-
-				$fields = implode(",", $column);
-			}
-			else
-			{
-				$fields = '*';
-			}
-
-			$cond = '';
-			$value = array();
-			$where = '';
-			if ($this->where)
-			{
-				foreach ($this->where as $key=>$val)
-				{
-					$cond .= $key;
-					$value[] = $val;
-				}
-				$where = ' WHERE '.$cond;
-			}
-
-			$sql = 'SELECT '.$fields.' FROM '.$table.$where.$this->limit;
-
-			$stm = $this->pdo->prepare($sql);
-			$stm->execute($value);
-			return $stm->fetch();
+			$tabt = explode(" ", $tab[1]);
+			$tabt[0] = $this->stQuotes($tabt[0]);
+			if ($tabt[1])
+				$tabt[1] = $this->stQuotes($tabt[1]);
+			$tab[1] = implode(" ", $tabt);
 		}
-		catch(PDOException $e)
+		// `pub`.`tbl_profile` `p`
+		$table = implode(".", $tab);
+		
+		$this->joinQuery[$this->joinIndex] = ' JOIN '.$table.' '.$conditions;
+		$this-bind['join'][$this->joinIndex] = $params;
+		
+		$this->joinIndex += 1;
+		
+		return $this;
+	}
+	
+	public function leftJoin($table, $conditions, $params=array())
+	{
+		$tab = explode(".", $table);
+		$tab[0] = $this->stQuotes($tab[0]);
+		
+		if ($tab[1])
 		{
-			$this->errorMessage = ERROR_SELECT;
+			$tabt = explode(" ", $tab[1]);
+			$tabt[0] = $this->stQuotes($tabt[0]);
+			if ($tabt[1])
+				$tabt[1] = $this->stQuotes($tabt[1]);
+			$tab[1] = implode(" ", $tabt);
 		}
-		catch (Exception $e)
-		{
-			$this->errorMessage = '<br />' . $e->getMessage();
-		}
-	} */
+		// `pub`.`tbl_profile` `p`
+		$table = implode(".", $tab);
+		
+		$this->leftJoin[$this->joinIndex] = ' LEFT JOIN '.$table.' '.$conditions;
+		$this-bind['leftJoin'][$this->joinIndex] = $params;
+		
+		$this->joinIndex += 1;
+		
+		return $this;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * @param $table
