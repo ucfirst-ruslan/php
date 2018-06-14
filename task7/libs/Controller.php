@@ -27,6 +27,8 @@ class Controller
 			if($this->model->checkForm() === true)
 			{
 				$this->model->sendEmail();
+				header("Location: index.php");
+
 			}
 
 			$mArray = $this->model->getArray();		
