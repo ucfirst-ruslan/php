@@ -78,7 +78,11 @@ class Model
 		$message .= 'IP address: ' . $_SERVER['REMOTE_ADDR'] . "<br>\r\n";
 		$message .= 'Client time: '.$_POST['date'] . "<br>\r\n";
 
-		return mail('ucfirst.ruslan@gmail.com', $dep[$_POST['department']], $message, $header);
+		if (!mail('ucfirst.ruslan@gmail.com', $dep[$_POST['department']], $message, $header))
+		{
+			throw new Exception(EMAIL_ERROR);
+		}
+
 	}
 
 	private function select()
