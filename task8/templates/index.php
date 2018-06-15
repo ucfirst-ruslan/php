@@ -25,7 +25,7 @@
 		<form method="post" action="index.php">
 
 			<div class="wrap-input">
-				<input class="search-input" type="text" name="search" required>
+				<input class="search-input" type="text" name="search" placeholder="Введите поисковый запрос или URL" required>
 			</div>
 
 		</form>
