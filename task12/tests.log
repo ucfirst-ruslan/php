@@ -1402,3 +1402,999 @@ Tests: 1, Assertions: 1, Failures: 1.
 ================ END =================
  
  
+======  START test file ./tests/ArrayDiffTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 120 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayDiffTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     0 => 1
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayDiffTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayHasKeyTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 60 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayHasKeyTest::testFailure
+Failed asserting that an array has the key 'foo'.
+
+/Volumes/Work/Site/php/task12/tests/ArrayHasKeyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayWeakComparisonTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 61 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayWeakComparisonTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => 1
++    0 => '1'
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayWeakComparisonTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/AssertTagTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+E
+
+Time: 58 ms, Memory: 4.00Mb
+
+There was 1 error:
+
+1) AssertTagTest::testMatcher
+Undefined variable: html
+
+/Volumes/Work/Site/php/task12/tests/AssertTagTest.php:82
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Bar.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Bar' could not be found in '/Volumes/Work/Site/php/task12/tests/Bar.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Biscuit.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Biscuit' could not be found in '/Volumes/Work/Site/php/task12/tests/Biscuit.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/BiscuitTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) BiscuitTest::testEquals
+Failed asserting that Biscuit Object () is not equal to Biscuit Object ().
+
+/Volumes/Work/Site/php/task12/tests/BiscuitTest.php:14
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasAttributeTest::testFailure
+Failed asserting that class "stdClass" has attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasStaticAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 60 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasStaticAttributeTest::testFailure
+Failed asserting that class "stdClass" has static attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasStaticAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyInstancesOfTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyInstancesOfTest::testFailure
+Failed asserting that Array (
+    0 => Foo Object ()
+    1 => Bar Object ()
+    2 => Foo Object ()
+) contains only values of type "Foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyInstancesOfTest.php:9
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 57 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyTest::testFailure
+Failed asserting that Array (
+    0 => '1'
+    1 => '2'
+    2 => 3
+) contains only values of type "string".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest::testFailure
+Failed asserting that an array contains 4.
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest2.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 55 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest2::testFailure
+Failed asserting that 'foobar' contains "baz".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest2.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest3.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F.
+
+Time: 57 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest3::testFailure
+Failed asserting that 'FooBar' contains "foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest3.php:6
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CountTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 56 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) CountTest::testFailure
+Failed asserting that actual size 1 matches expected size 0.
+
+/Volumes/Work/Site/php/task12/tests/CountTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CsvFileIterator.php  ======
+
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/CsvFileIterator' could not be found in '/Volumes/Work/Site/php/task12/tests/CsvFileIterator.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+...F
+
+Time: 63 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) DataTest::testAdd with data set #3 (1, 1, 3)
+Failed asserting that 2 matches expected 3.
+
+/Volumes/Work/Site/php/task12/tests/DataTest.php:9
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest1.php  ======
+======  START test file ./tests/ArrayDiffTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 112 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayDiffTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     0 => 1
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayDiffTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayHasKeyTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayHasKeyTest::testFailure
+Failed asserting that an array has the key 'foo'.
+
+/Volumes/Work/Site/php/task12/tests/ArrayHasKeyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayWeakComparisonTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 61 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayWeakComparisonTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => 1
++    0 => '1'
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayWeakComparisonTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/AssertTagTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+E
+
+Time: 56 ms, Memory: 4.00Mb
+
+There was 1 error:
+
+1) AssertTagTest::testMatcher
+Undefined variable: html
+
+/Volumes/Work/Site/php/task12/tests/AssertTagTest.php:82
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Bar.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Bar' could not be found in '/Volumes/Work/Site/php/task12/tests/Bar.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Biscuit.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Biscuit' could not be found in '/Volumes/Work/Site/php/task12/tests/Biscuit.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/BiscuitTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 62 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) BiscuitTest::testEquals
+Failed asserting that Biscuit Object () is not equal to Biscuit Object ().
+
+/Volumes/Work/Site/php/task12/tests/BiscuitTest.php:14
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasAttributeTest::testFailure
+Failed asserting that class "stdClass" has attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasStaticAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 62 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasStaticAttributeTest::testFailure
+Failed asserting that class "stdClass" has static attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasStaticAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyInstancesOfTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 58 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyInstancesOfTest::testFailure
+Failed asserting that Array (
+    0 => Foo Object ()
+    1 => Bar Object ()
+    2 => Foo Object ()
+) contains only values of type "Foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyInstancesOfTest.php:9
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyTest::testFailure
+Failed asserting that Array (
+    0 => '1'
+    1 => '2'
+    2 => 3
+) contains only values of type "string".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 57 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest::testFailure
+Failed asserting that an array contains 4.
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest2.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 55 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest2::testFailure
+Failed asserting that 'foobar' contains "baz".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest2.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest3.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F.
+
+Time: 57 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest3::testFailure
+Failed asserting that 'FooBar' contains "foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest3.php:6
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CountTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 55 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) CountTest::testFailure
+Failed asserting that actual size 1 matches expected size 0.
+
+/Volumes/Work/Site/php/task12/tests/CountTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CsvFileIterator.php  ======
+
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/CsvFileIterator' could not be found in '/Volumes/Work/Site/php/task12/tests/CsvFileIterator.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+...F
+
+Time: 67 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) DataTest::testAdd with data set #3 (1, 1, 3)
+Failed asserting that 2 matches expected 3.
+
+/Volumes/Work/Site/php/task12/tests/DataTest.php:9
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest1.php  ======
+======  START test file ./tests/ArrayDiffTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 61 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayDiffTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     0 => 1
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayDiffTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayHasKeyTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 61 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayHasKeyTest::testFailure
+Failed asserting that an array has the key 'foo'.
+
+/Volumes/Work/Site/php/task12/tests/ArrayHasKeyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ArrayWeakComparisonTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 66 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ArrayWeakComparisonTest::testEquality
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => 1
++    0 => '1'
+     1 => 2
+-    2 => 3
++    2 => 33
+     3 => 4
+     4 => 5
+     5 => 6
+ )
+
+/Volumes/Work/Site/php/task12/tests/ArrayWeakComparisonTest.php:7
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/AssertTagTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+E
+
+Time: 60 ms, Memory: 4.00Mb
+
+There was 1 error:
+
+1) AssertTagTest::testMatcher
+Undefined variable: html
+
+/Volumes/Work/Site/php/task12/tests/AssertTagTest.php:82
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Bar.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Bar' could not be found in '/Volumes/Work/Site/php/task12/tests/Bar.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/Biscuit.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/Biscuit' could not be found in '/Volumes/Work/Site/php/task12/tests/Biscuit.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/BiscuitTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 63 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) BiscuitTest::testEquals
+Failed asserting that Biscuit Object () is not equal to Biscuit Object ().
+
+/Volumes/Work/Site/php/task12/tests/BiscuitTest.php:14
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 64 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasAttributeTest::testFailure
+Failed asserting that class "stdClass" has attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ClassHasStaticAttributeTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 63 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ClassHasStaticAttributeTest::testFailure
+Failed asserting that class "stdClass" has static attribute "foo".
+
+/Volumes/Work/Site/php/task12/tests/ClassHasStaticAttributeTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyInstancesOfTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 58 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyInstancesOfTest::testFailure
+Failed asserting that Array (
+    0 => Foo Object ()
+    1 => Bar Object ()
+    2 => Foo Object ()
+) contains only values of type "Foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyInstancesOfTest.php:9
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsOnlyTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 60 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsOnlyTest::testFailure
+Failed asserting that Array (
+    0 => '1'
+    1 => '2'
+    2 => 3
+) contains only values of type "string".
+
+/Volumes/Work/Site/php/task12/tests/ContainsOnlyTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 58 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest::testFailure
+Failed asserting that an array contains 4.
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest2.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 60 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest2::testFailure
+Failed asserting that 'foobar' contains "baz".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest2.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/ContainsTest3.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F.
+
+Time: 59 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) ContainsTest3::testFailure
+Failed asserting that 'FooBar' contains "foo".
+
+/Volumes/Work/Site/php/task12/tests/ContainsTest3.php:6
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CountTest.php  ======
+ 
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+F
+
+Time: 57 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) CountTest::testFailure
+Failed asserting that actual size 1 matches expected size 0.
+
+/Volumes/Work/Site/php/task12/tests/CountTest.php:6
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/CsvFileIterator.php  ======
+
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+Class './tests/CsvFileIterator' could not be found in '/Volumes/Work/Site/php/task12/tests/CsvFileIterator.php'.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest.php  ======
+PHPUnit 3.7.38 by Sebastian Bergmann.
+
+...F
+
+Time: 71 ms, Memory: 4.00Mb
+
+There was 1 failure:
+
+1) DataTest::testAdd with data set #3 (1, 1, 3)
+Failed asserting that 2 matches expected 3.
+
+/Volumes/Work/Site/php/task12/tests/DataTest.php:9
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+============= END test ==============
+ 
+ 
+======  START test file ./tests/DataTest1.php  ======

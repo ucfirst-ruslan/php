@@ -1,14 +1,25 @@
 #!/bin/bash
 
-for (( i=1; i <= 65; i++ ))
-do
-	echo "======  START test file $i.php  ======" >> tests.log
-	echo "start test #$i"
-		result=$(./phpunit-3.7.phar ./tests/$i.php)
-	echo "$result" >> tests.log
-	echo "================ END =================" >> tests.log
-	echo " " >> tests.log
-	echo " " >> tests.log
+dir_file=$(find ./tests -path *.php -type f)
 
-echo "File is $i.php"
-done
+for file in $dir_file
+	do
+		echo "======  START test file $file  ======" >> tests.log
+		echo "start test $file"
+		result=$(./phpunit-3.7.phar $file)
+		echo "$result" >> tests.log
+		echo "============= END test ==============" >> tests.log
+		echo " " >> tests.log
+		echo " " >> tests.log
+		echo "$result"
+	done
+	
+	
+	
+	echo "======  START test file $file  ======" >> tests.log
+	echo "start test $file"
+		result=$(./phpunit-3.7.phar $file)
+	echo "$result" >> tests.log
+	echo "============= END test ==============" >> tests.log
+	echo " " >> tests.log
+	echo " " >> tests.log
