@@ -5,27 +5,29 @@ include_once 'servises/ParseGoogleServise.php';
 
 class Model
 {
-	private $request;
+	private $array;
 
 	public function __construct()
 	{
-		$this->request = [];
+		$this->array['%TITLE%'] = 'Search';
+		$this->array['%REQUEST%'] = $_POST['search'];
 	}
 
 	public function getArray()
 	{
-		return array('%TITLE%' => 'Search', '%ERRORS%' => 'Empty field');
+
+		return $this->array;
 	}
 
 	public function sendRequest()
 	{
 		$pageSearch = new UrlSendServise();
 
-		$page = $pageSearch->getSearchPage($_POST['query']);
+		$page = $pageSearch->getSearchPage($_POST['search']);
 
-		if(is_array($page))
+		if($page)
 		{
-			$this->request = $page;
+			$this->getPage($page);
 		}
 		else
 		{
@@ -35,15 +37,12 @@ class Model
 		return true;
 	}
 
-	public function getPage()
+	private function getPage($content)
 	{
 		$pageParse = new ParseGoogleServise();
 
-		$parse = $pageParse->parse($this->request);
+		$this->array['%CONTENT%'] = $pageParse->parse($content);
 
-
-
-
-		// return mail()
+		return true;
 	}
 }

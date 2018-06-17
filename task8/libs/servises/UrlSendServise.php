@@ -19,12 +19,12 @@ class UrlSendServise
 		$content = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		curl_close($ch);
-	echo '<pre>';
-	var_dump($info);
-	echo'</pre>';
 
+		if (200 == $info['http_code'])
+		{
+			return $content;
+		}
 
-
-		return $content;
+		return false;
 	}
 }
