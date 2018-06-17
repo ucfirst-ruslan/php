@@ -1,7 +1,7 @@
 <?php
 
 
-class UrlSendServise
+class UrlSendService
 {
 	public function getSearchPage($request)
 	{

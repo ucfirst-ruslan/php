@@ -1,6 +1,6 @@
 <?php
 
-class ParseGoogleServise
+class ParseGoogleService
 {
 	public function parse($content)
 	{

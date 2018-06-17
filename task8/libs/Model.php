@@ -1,7 +1,7 @@
 <?php
 
-include_once 'servises/UrlSendServise.php';
-include_once 'servises/ParseGoogleServise.php';
+include_once 'services/UrlSendService.php';
+include_once 'services/ParseGoogleService.php';
 
 class Model
 {
@@ -21,7 +21,7 @@ class Model
 
 	public function sendRequest()
 	{
-		$pageSearch = new UrlSendServise();
+		$pageSearch = new UrlSendService();
 
 		$page = $pageSearch->getSearchPage($_POST['search']);
 
@@ -39,7 +39,7 @@ class Model
 
 	private function getPage($content)
 	{
-		$pageParse = new ParseGoogleServise();
+		$pageParse = new ParseGoogleService();
 
 		$this->array['%CONTENT%'] = $pageParse->parse($content);
 
