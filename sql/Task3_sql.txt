@@ -1,0 +1,357 @@
+#1
+Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed и hd
+
+SELECT model, speed, hd 
+FROM pc 
+WHERE price < 500
+
+=========================
+#2
+Найдите производителей принтеров. Вывести: maker
+
+SELECT DISTINCT maker 
+FROM Product 
+WHERE type = 'Printer'
+
+========================
+#3
+Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.
+
+SELECT model, ram, screen 
+FROM laptop 
+WHERE price > 1000
+
+=======================
+#4
+Найдите все записи таблицы Printer для цветных принтеров.
+
+SELECT * 
+FROM printer 
+WHERE color = 'y'
+
+======================
+#5
+Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24x CD и цену менее 600 дол.
+
+SELECT model, speed, hd
+FROM pc 
+WHERE (cd = '12x' OR cd = '24x') AND price < 600
+
+=====================
+#6
+Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.
+
+SELECT DISTINCT pr.maker, l.speed 
+FROM laptop AS l 
+	JOIN product AS pr ON pr.model = l.model 
+WHERE l.hd >= 10
+
+=====================
+#7
+Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
+
+SELECT DISTINCT pc.model, pc.price
+FROM pc, product AS pr 
+WHERE pc.model = pr.model AND pr.maker = 'B'
+
+UNION
+
+SELECT DISTINCT l.model, l.price
+FROM laptop AS l, product AS pr 
+WHERE l.model = pr.model AND pr.maker = 'B'
+
+UNION
+
+SELECT DISTINCT prn.model, prn.price
+FROM printer AS prn, product AS pr 
+WHERE prn.model = pr.model AND pr.maker = 'B'
+
+======================
+#8
+Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+
+SELECT maker 
+    FROM product 
+    WHERE type = 'pc'
+EXCEPT 
+SELECT pr.maker 
+    FROM product AS pr
+    WHERE type = 'laptop'
+
+=====================    
+#9
+Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+
+SELECT DISTINCT pr.maker 
+FROM product AS pr 
+LEFT JOIN  pc ON pc.model = pr.model 
+WHERE pc.speed >= 450
+
+=====================
+#10
+Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+
+SELECT model, price 
+FROM printer 
+WHERE price = (
+    SELECT MAX(price) 
+    FROM printer
+)
+
+====================
+#11
+Найдите среднюю скорость ПК.
+
+SELECT AVG(speed) 
+FROM pc
+
+====================
+#12
+Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.
+
+SELECT AVG(speed) AS Avg_speed
+FROM laptop 
+WHERE  price > 1000
+
+====================
+#13
+Найдите среднюю скорость ПК, выпущенных производителем A.
+
+SELECT AVG(pc.speed) AS Avg_speed
+FROM pc, product AS pr 
+WHERE   pr.maker = 'A' AND pc.model = pr.model
+
+====================
+#14
+Найти производителей, которые выпускают более одной модели, при этом все выпускаемые производителем модели являются продуктами одного типа.
+Вывести: maker, type
+
+SELECT DISTINCT maker, type 
+FROM product
+WHERE maker IN (
+	SELECT maker 
+	FROM product
+
+GROUP BY maker
+HAVING COUNT(DISTINCT type)=1 AND COUNT(model)>1
+)
+
+====================
+#15
+Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+
+SELECT hd 
+FROM pc 
+GROUP BY hd 
+HAVING COUNT(model) >= 2
+
+=====================
+#16
+Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
+
+SELECT DISTINCT pcA.model, pcB.model,  pcA.speed AS speed,  pcA.ram AS ram
+FROM pc AS pcA, pc AS pcB
+WHERE pcA.speed = pcB.speed AND 
+             pcA.ram = pcB.ram AND 
+             pcA.model > pcB.model
+             
+====================
+#17
+Найдите модели ПК-блокнотов, скорость которых меньше скорости любого из ПК. 
+Вывести: type, model, speed
+
+SELECT DISTINCT pr.type, l.model, l.speed
+FROM laptop AS l
+JOIN product AS pr on l.model=pr.model
+WHERE l.speed < ALL (
+	SELECT speed 
+ 	FROM PC)
+
+===================
+#18
+Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
+
+SELECT DISTINCT pr.maker, prn.price 
+FROM product AS pr, printer AS prn
+WHERE prn.color ='y' AND
+pr.model = prn.model AND
+prn.price = (SELECT min(price)
+            FROM printer
+            WHERE color = 'y')
+            
+===================
+#19
+Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов. 
+Вывести: maker, средний размер экрана.
+
+SELECT pr.maker, avg(l.screen) AS Avg_screen
+FROM product AS pr, laptop AS l
+WHERE pr.model = l.model
+GROUP BY pr.maker
+
+====================
+#20
+Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
+
+SELECT maker, COUNT(model) AS Count_Model
+FROM product
+WHERE type = 'pc'
+GROUP BY maker
+HAVING count(model) >2
+
+====================
+#21
+Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC. 
+Вывести: maker, максимальная цена.
+
+SELECT maker, MAX(price) AS Max_price
+FROM product AS pr
+JOIN pc ON pc.model=pr.model
+WHERE pr.type= 'pc'
+GROUP BY maker
+
+====================
+#22
+Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена.
+
+SELECT speed, AVG(price) AS Avg_price
+FROM pc
+WHERE speed > 600
+GROUP BY speed
+
+===================
+#23
+Найдите производителей, которые производили бы как ПК
+со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+Вывести: Maker
+
+SELECT DISTINCT pr.maker 
+FROM product AS pr
+JOIN laptop AS l ON l.model = pr.model AND l.speed >= 750
+WHERE maker IN (
+    SELECT pr.maker
+    FROM product AS pr
+    JOIN pc ON pc.model = pr.model AND pc.speed >= 750
+)
+
+==================
+#24
+Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+
+SELECT DISTINCT model 
+FROM ( 
+SELECT model, price 
+FROM pc 
+UNION ALL 
+SELECT model, price 
+FROM printer 
+UNION ALL 
+SELECT model, price 
+FROM laptop
+) X 
+WHERE price >= ALL ( 
+    SELECT MAX(price)  
+	FROM pc 
+    UNION ALL 
+    SELECT MAX(price) 
+	FROM laptop 
+    UNION ALL 
+	SELECT MAX(price) 
+	FROM printer)
+
+=====================
+#25
+Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести: Maker
+
+SELECT DISTINCT maker
+FROM Product 
+WHERE type = 'printer' AND maker 
+    IN (SELECT maker FROM Product WHERE model 
+    IN (SELECT model FROM Pc
+        WHERE speed = (
+        SELECT MAX(speed) FROM
+            (SELECT speed FROM Pc WHERE ram = (
+                SELECT MIN(ram) FROM Pc)) AS X)
+                    and ram = (
+                            SELECT MIN(ram)
+                            FROM pc 
+                            ) 
+        )
+        )
+
+===================
+#26
+Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква). Вывести: одна общая средняя цена.
+
+SELECT AVG(av.p) AS avg_price 
+FROM (
+    SELECT price p 
+    FROM Product m, PC 
+    WHERE m.model = PC.model AND maker = 'A' 
+    UNION ALL
+    SELECT price p 
+    FROM Product m, Laptop l 
+    WHERE m.model = l.model AND maker = 'A' 
+    ) AS av
+
+===================
+#27
+Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD.
+
+SELECT pr.maker, AVG(pc.hd) AS hdd
+FROM product AS pr, pc
+WHERE pr.model = pc.model AND maker 
+    IN (
+    SELECT maker  
+    FROM product  WHERE type='Printer')
+GROUP BY pr.maker
+
+===================
+#28
+Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+
+SELECT COUNT(maker) AS qty 
+FROM (
+	SELECT maker 
+	FROM Product 
+	GROUP BY maker 
+	HAVING COUNT(model) = 1
+) tab
+
+==================
+#29
+В предположении, что приход и расход денег на каждом пункте приема фиксируется не чаще одного раза в день [т.е. первичный ключ (пункт, дата)], написать запрос с выходными данными (пункт, дата, приход, расход). Использовать таблицы Income_o и Outcome_o.
+
+SELECT in_o.point, in_o.date, inc, out 
+FROM income_o AS in_o
+LEFT JOIN outcome_o AS ot_o ON in_o.point = ot_o.point 
+AND in_o.date = ot_o.date 
+
+UNION all
+
+SELECT ot_o.point, ot_o.date, inc, out 
+FROM income_o AS in_o 
+RIGHT JOIN outcome_o AS ot_o ON in_o.point = ot_o.point 
+AND in_o.date = ot_o.date
+
+WHERE in_o.inc IS NULL
+
+==================
+#30
+В предположении, что приход и расход денег на каждом пункте приема фиксируется произвольное число раз (первичным ключом в таблицах является столбец code), требуется получить таблицу, в которой каждому пункту за каждую дату выполнения операций будет соответствовать одна строка.
+Вывод: point, date, суммарный расход пункта за день (out), суммарный приход пункта за день (inc). Отсутствующие значения считать неопределенными (NULL).
+
+SELECT point, date, SUM(sum_out), SUM(sum_inc)  
+FROM (
+	SELECT point, date, SUM(inc) as sum_inc, null as sum_out 
+	FROM Income 
+	GROUP BY point, date 
+
+UNION 
+
+	SELECT point, date, null as sum_inc, SUM(out) as sum_out
+	FROM Outcome 
+	GROUP BY point, date
+	) AS X 
+
+GROUP BY point, date

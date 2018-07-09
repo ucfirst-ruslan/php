@@ -60,13 +60,3 @@ catch(PDOException $e)
 }
 
 $conn = null;
-
-/*\copy zip_codes(ZIP,CITY,STATE) FROM '/path/to/csv/ZIP_CODES.txt' DELIMITER ',' CSV
-
-
-CREATE TABLE "public"."test" (
-"id" integer,
-    "name" character varying(255),
-    "description" text
-);*/
-
