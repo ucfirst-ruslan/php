@@ -6,14 +6,29 @@ include_once 'libs/fileoperations.php';
 
 $fileObj = new FileOperations();
 
-$getLine = $fileObj->getData(5);
+$getStringNum = 5;
+$getSymbolNum = 1;
+$repStringNum = 5;
+$repStrData = 'DTHdssegfsdegasdgfDHTS';
+$repSumbolNum = 4;
+$repSumbolData = 'U';
 
-$getSymbol = $fileObj->getData(5, 1);
+//Весь файл
+$getFile = $fileObj->getFile();
 
-$replaceLine = $fileObj->setData("DTHdssegfsdegasdgfDHTS", 5);
+// Получить строку (начиная с 0)
+$getLine = $fileObj->getData($getStringNum);
 
-$replaceSymbol = $fileObj->setData("R", 4,4);
+//Получить символ (начиная с 0)
+$getSymbol = $fileObj->getData($getStringNum, $getSymbolNum);
 
+//замена строки
+$replaceLine = $fileObj->setData($repStrData, $repSumbolNum);
+
+//Замена символа
+$replaceSymbol = $fileObj->setData($repSumbolData, $repStringNum,$repSumbolNum);
+
+// Вывод ошибок
 $errors = $fileObj->getError();
 
 $title = 'Работа с файлом';

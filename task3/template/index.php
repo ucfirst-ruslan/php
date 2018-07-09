@@ -13,16 +13,21 @@
     <?php endforeach;
     else: ?>
 
-      <p><strong>Получить строку</strong> <br><?= $getLine ?></p>
+			<p><strong>Оригинальный файл</strong> <br>
+			<?php foreach ($getFile as $file):?>
+				<?= $file?><br>
+			<?php endforeach;?> </p>
 
-      <p><strong>Получить символ</strong> <br><?= $getSymbol ?></p>
+      <p><strong>Получить строку #<?= $getStringNum ?></strong>  <br><?= $getLine ?></p>
 
-      <p><strong>Заменить строку</strong> <br>
+      <p><strong>Получить символ #<?= $getSymbolNum ?> из строки #<?= $getStringNum ?></strong> <br><?= $getSymbol ?></p>
+
+      <p><strong>Заменить строку #<?= $repStringNum ?></strong> <br>
       <?php foreach ($replaceLine as $line):?>
           <?= $line?><br>
       <?php endforeach;?> </p>
 
-      <p><strong>Заменить символ</strong> <br>
+      <p><strong>Заменить символ #<?= $repSumbolNum ?> в строке #<?= $repStringNum ?></strong> <br>
       <?php foreach ($replaceSymbol as $symbol):?>
           <?= $symbol?><br>
       <?php endforeach;

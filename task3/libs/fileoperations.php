@@ -16,7 +16,7 @@ class FileOperations
     {
         $this->error = array();
         $this->file = file(FILE_FOR_READ);
-        $this->newFile = $this->file;
+        //$this->newFile = $this->file;
     }
 
     public function getData($numLine, $numSymbol = NULL)
@@ -34,6 +34,16 @@ class FileOperations
         else
             return $this->symbolReplace($replace, $numLine, $numSymbol);
     }
+
+	/**
+	 * Get file
+	 *
+	 * @return array|bool
+	 */
+	public function getFile()
+	{
+		return $this->file;
+	}
 
     /**
      * Get string
@@ -91,6 +101,7 @@ class FileOperations
 
         if (!empty($this->file[$numLine]))
         {
+	        $this->newFile = $this->file;
             $this->newFile[$numLine] = $lineReplace.PHP_EOL;
             $this->writeFile();
             $result = $this->newFile;
@@ -116,6 +127,7 @@ class FileOperations
     {
         if (!empty($this->file[$numLine][$numSymbol]))
         {
+	        $this->newFile = $this->file;
             $this->newFile[$numLine][$numSymbol] = $symbolReplace;
             $this->writeFile();
             $result = $this->newFile;
@@ -127,6 +139,7 @@ class FileOperations
         }
         return $result;
     }
+
 
     /**
      * Write new file
